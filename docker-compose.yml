@@ -1,0 +1,26 @@
+version: '2'
+
+services:
+  mysql:
+    image: mysql:5.7
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: poxel_db
+      MYSQL_ROOT_PASSWORD: poxel123!
+      MYSQL_PASSWORD: poxel123!
+      MYSQL_USER: poxel
+
+  myapp:
+    image: docker.io/bitnami/laravel:8
+    ports:
+      - '8000:8000'
+    environment:
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_USERNAME=poxel
+      - DB_DATABASE=poxel_db
+      - DB_PASSWORD=poxel123!
+    volumes:
+      - './app:/app'
+    depends_on:
+      - mysql
