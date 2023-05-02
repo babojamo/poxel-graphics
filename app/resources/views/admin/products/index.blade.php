@@ -3,6 +3,24 @@
 @section('content')
 <div class="row">
     <div class="col-12">
+        @if($errors->any())
+        <div class="mt-3  alert alert-primary alert-dismissible fade show" role="alert">
+            <span class="alert-text text-white">
+                {{$errors->first()}}</span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                <i class="fa fa-close" aria-hidden="true"></i>
+            </button>
+        </div>
+        @endif
+        @if(session('success'))
+        <div class="m-3  alert alert-success alert-dismissible fade show" id="alert-success" role="alert">
+            <span class="alert-text text-white">
+                {{ session('success') }}</span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                <i class="fa fa-close" aria-hidden="true"></i>
+            </button>
+        </div>
+        @endif
         <div class="card mb-4 mx-4">
             <div class="card-header pb-0">
                 <div class="d-flex flex-row">
@@ -26,6 +44,8 @@
                 </div>
             </div>
             <div class="card-body px-0 pt-0 pb-2">
+
+
                 <div class="table-responsive p-0">
                     <table class="table align-items-center mb-0">
                         <thead>
@@ -87,12 +107,19 @@
                                         class="text-secondary text-xs font-weight-bold">{{ $product->created_at }}</span>
                                 </td>
                                 <td class="text-center">
-                                    <a href="#" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Edit">
-                                        <i class="fas fa-pencil-alt text-secondary"></i>
-                                    </a>
-                                    <span>
-                                        <i class="cursor-pointer fas fa-trash text-secondary"></i>
-                                    </span>
+
+                                    <form id="form-{{ $product->id }}"
+                                        action="{{ route('admin.products.delete', $product->id) }}" method="post">
+                                        @csrf
+                                        <a href="{{ route('admin.products.view', $product->id) }}" class="mx-3"
+                                            data-bs-toggle="tooltip" data-bs-original-title="Edit">
+                                            <i class="fas fa-pencil-alt text-secondary"></i>
+                                        </a>
+                                        @method('delete')
+                                        <a onclick="document.getElementById('form-{{ $product->id }}').submit();">
+                                            <i class="cursor-pointer fas fa-trash text-secondary"></i>
+                                        </a>
+                                    </form>
                                 </td>
                             </tr>
                             @endforeach

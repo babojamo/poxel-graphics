@@ -164,3 +164,7 @@ body {
     /* Microsoft Edge */
     color: #505050c2 !important;
 }
+
+.breadcrumb > .active {
+    color: var(--purple-color);
+}

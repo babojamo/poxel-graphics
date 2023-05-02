@@ -13,4 +13,10 @@ class ProductsController extends Controller
             'product' => $product
         ]);
     }
+
+    public function detail(ServiceProduct $product) {
+        return view('products-services.product-detail', [
+            'product' => $product
+        ]);
+    }
 }
