@@ -1,73 +1,253 @@
 @extends('layouts.app')
+@section('title', 'Get A Quote')
+@section('header-imports')
+<style>
+    .login-welcome-content {
+        width: unset !important;
+        flex: unset !important;
+    }
+</style>
+@endsection
+
 @section('content')
- 
-<!-- create-item-area -->
-<div class="pt-180 pb-80">
+<section class="pt-180 pb-80">
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-xl-3 col-lg-4 col-md-6">
-                <aside class="create-item-sidebar">
-                    <h4 class="title">Service/Product</h4>
-                    <div class="top-collection-item mb-0">
-                        
-                        <div class="collection-item-thumb">
-                            <a href="market-single.html"><img src="assets/img/others/top_collection06.jpg" alt=""></a>
-                        </div>
-                        <div class="collection-item-content">
-                            <h5 class="title"><a href="market-single.html">Basketball Jersey</a></h5>
-                        </div>
-                        
+        
+        <div class="row">
+            <div class="col-12">
+                <div class="login-welcome-wrap">
+                    <div class="login-welcome-content">
+                        <h2 class="title poxel-title">GET A QUOTE</h2>
+                        <p>Transform your ideas into reality with Poxel Graphics and Apparel Printing Services. Get a
+                            free quote today and discover the possibilities of high-quality custom graphics and apparel
+                            printing. If you have questions feel free to <a href="login-register.html">contact us.</a>
+                        </p>
                     </div>
-                </aside>
-            </div>
-            <div class="col-xl-9 col-lg-8">
-                <div class="method-wrap">
-                    <h4 class="title">Select method</h4>
-                    <ul class="method-list">
-                        <li><a href="#" class="active"><i class="flaticon-tag"></i> Fixed Price</a></li>
-                        <li><a href="#"><i class="flaticon-timer"></i> Time Auctions</a></li>
-                        <li><a href="#"><i class="flaticon-add-user"></i> Open For Bids</a></li>
-                    </ul>
                 </div>
-                <form action="#" class="create-item-form">
-                    <div class="form-grp">
-                        <label for="file">Upload file</label>
-                        <input id="file" type="file">
-                    </div>
-                    <div class="form-grp">
-                        <label for="price">Price</label>
-                        <input id="price" type="text" placeholder="Enter price for one item (ETH)">
-                    </div>
-                    <div class="form-grp">
-                        <label for="title">Title</label>
-                        <input id="title" type="text" placeholder="Enter price for one item (ETH)">
-                    </div>
-                    <div class="form-grp">
-                        <label for="desc">Description</label>
-                        <textarea name="message" id="desc" placeholder="e.g. This is very limited item"></textarea>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-grp">
-                                <label for="royalties">Royalties</label>
-                                <input id="royalties" type="text" placeholder="(10%)">
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-grp">
-                                <label for="size">Size</label>
-                               
-                                <select name="" id="">
-                                    <option value="Test">Test</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <button type="submit" class="btn">Create Item</button>
-                </form>
+
+                @if(session('success'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('success') }}
+                </div>
+                @endif
             </div>
         </div>
+        <div class="signup-form-wrap">
+            <div class="method-wrap">
+                <h4 class="title">Select Service</h4>
+                <ul class="method-list">
+                    <li><a href="{{ route('quotation') }}" class="{{ !$others ? 'active' : '' }}"><i
+                                class="flaticon-tag"></i> Sublimation</a></li>
+                    <li><a href="{{ route('quotation') . '?service=others' }}" class="{{ $others ? 'active' : '' }}"><i
+                                class="flaticon-timer"></i> Others</a></li>
+                </ul>
+            </div>
+            <form action="{{ route('quotation.send') }}" class="create-item-form" method="POST" role="form text-left"
+                enctype="multipart/form-data">
+                <input value="{{ $others ? 'others' : 'sublimation' }}" name="service" type="hidden">
+                @csrf
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-grp">
+                            <label for="name">Name</label>
+                            <input value="{{ old('name') }}" class="form-control @error('name') is-invalid @enderror"
+                                id="name" name="name" type="text" placeholder="Name">
+                            @error('name')
+                            <p class="invalid-feedback">{{ $message }}</p>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-grp">
+                            <label for="company">Company</label>
+                            <input value="{{ old('company') }}"
+                                class="form-control @error('company') is-invalid @enderror" id="company" name="company"
+                                type="text" placeholder="Company">
+                            @error('company')
+                            <p class="invalid-feedback">{{ $message }}</p>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-grp">
+                            <label for="contact">Contact Number</label>
+                            <input value="{{ old('contact') }}"
+                                class="form-control @error('contact') is-invalid @enderror" id="contact" name="contact"
+                                type="text" placeholder="Contact number">
+                            @error('contact')
+                            <p class="invalid-feedback">{{ $message }}</p>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-grp">
+                            <label for="email-address">Email Address</label>
+                            <input value="{{ old('email_address') }}"
+                                class="form-control @error('email_address') is-invalid @enderror" id="email-address"
+                                name="email_address" type="text" placeholder="Email address">
+                            @error('email_address')
+                            <p class="invalid-feedback">{{ $message }}</p>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-grp">
+                            <label for="order-type">Order Type</label>
+                            <select class="form-control @error('order_type') is-invalid @enderror" name="order_type"
+                                id="order-type">
+                                <option value="">Select</option>
+                                @if($others)
+
+                                @foreach($other_order_types as $type)
+                                <option value="{{ $type }}" {{ old('order_type') === $type ? 'selected' : '' }}>
+                                    {{ $type }}</option>
+                                @endforeach
+
+                                @else
+
+                                @foreach($order_types as $type)
+                                <option value="{{ $type }}" {{ old('order_type') === $type ? 'selected' : '' }}>
+                                    {{ $type }}</option>
+                                @endforeach
+
+                                @endif
+                            </select>
+                            @error('order_type')
+                            <p class="invalid-feedback">{{ $message }}</p>
+                            @enderror
+
+                        </div>
+                    </div>
+                    @if($others)
+                    <div class="col-sm-6">
+                        <div class="form-grp">
+                            <label for="sticker-type">Sticker Type (for sticker only)</label>
+                            <select class="form-control @error('sticker_type') is-invalid @enderror" name="sticker_type"
+                                id="sticker-type">
+                                <option value="">Select</option>
+                                @foreach($sticker_types as $type)
+                                <option value="{{ $type }}" {{ old('sticker_type') === $type ? 'selected' : '' }}>
+                                    {{ $type }}</option>
+                                @endforeach
+                            </select>
+
+                            @error('sticker_type')
+                            <p class="invalid-feedback">{{ $message }}</p>
+                            @enderror
+
+                        </div>
+                    </div>
+                    @else
+                    <div class="col-sm-6">
+                        <div class="form-grp">
+                            <label for="printing-type">Printing Type</label>
+                            <select class="form-control @error('printing_type') is-invalid @enderror"
+                                name="printing_type" id="printing-type">
+                                <option value="">Select</option>
+                                @foreach($printing_types as $type)
+                                <option value="{{ $type }}" {{ old('printing_type') === $type ? 'selected' : '' }}>
+                                    {{ $type }}</option>
+                                @endforeach
+                            </select>
+                            @error('printing_type')
+                            <p class="invalid-feedback">{{ $message }}</p>
+                            @enderror
+                        </div>
+                    </div>
+                    @endif
+
+                </div>
+
+                @if(!$others)
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-grp">
+                            <label for="fabric">Fabric</label>
+                            <select class="form-control @error('fabric') is-invalid @enderror" name="fabric"
+                                id="fabric">
+                                <option value="">Select</option>
+                                @foreach($fabrics as $type)
+                                <option value="{{ $type }}" {{ old('fabric') === $type ? 'selected' : '' }}>{{ $type }}
+                                </option>
+                                @endforeach
+                            </select>
+                            @error('fabric')
+                            <p class="invalid-feedback">{{ $message }}</p>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+
+                        <div class="form-grp">
+                            <label for="colar-type">Collar Type</label>
+                            <select class="form-control @error('collar_type') is-invalid @enderror" name="collar_type"
+                                id="colar-type">
+                                <option value="">Select</option>
+                                @foreach($colar_types as $type)
+                                <option value="{{ $type }}" {{ old('collar_type') === $type ? 'selected' : '' }}>
+                                    {{ $type }}</option>
+                                @endforeach
+                            </select>
+                            @error('collar_type')
+                            <p class="invalid-feedback">{{ $message }}</p>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+                @endif
+
+                <div class="form-grp">
+                    <label for="quantity">Quantity</label>
+                    <input value="{{ old('quantity') }}" class="form-control @error('quantity') is-invalid @enderror" id="quantity" type="text"
+                        name="quantity" placeholder="Quantity">
+                    @error('quantity')
+                    <p class="invalid-feedback">{{ $message }}</p>
+                    @enderror
+                </div>
+                <div class="form-grp">
+                    <label for="size">Size
+                        (<i>{{ $others ? 'Must be in inches' : 'For cloth banner only' }}</i>)</label>
+                    <input value="{{ old('size') }}" class="form-control @error('size') is-invalid @enderror" id="size" name="size" type="text"
+                        placeholder="Size" />
+                    @error('size')
+                    <p class="invalid-feedback">{{ $message }}</p>
+                    @enderror
+                </div>
+                <div class="form-grp">
+                    <label for="deadline">Possible Deadline for Order</label>
+                    <input value="{{ old('deadline') }}" class="form-control @error('deadline') is-invalid @enderror" id="deadline" name="deadline"
+                        type="text"
+                        placeholder="Please state the specific date as to when the finished product is needed" />
+                    @error('deadline')
+                    <p class="invalid-feedback">{{ $message }}</p>
+                    @enderror
+                </div>
+                <div class="form-grp">
+                    <label for="reference">Reference Design</label>
+                    <input id="reference" name="reference" type="file">
+                    @error('reference')
+                    <p class="invalid-feedback">{{ $message }}</p>
+                    @enderror
+                </div>
+                <div class="form-grp">
+                    <label for="price">Remarks</label>
+                    <textarea name="remarks" placeholder="Optional note..." id="remarks" cols="30" rows="10">{{ old('remarks') }}</textarea>
+                    @error('remarks')
+                    <p class="invalid-feedback">{{ $message }}</p>
+                    @enderror
+                </div>
+                <p>Note: Please fill out completely the form especially your contact information so we can directly send
+                    you the quotation</p>
+                <button type="submit" class="btn">Send Request</button>
+            </form>
+        </div>
     </div>
-</div>
- 
+</section>
+
+
+
 @endsection

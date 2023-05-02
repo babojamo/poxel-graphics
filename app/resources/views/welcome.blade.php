@@ -1,12 +1,10 @@
-- categories
-
-- products - must have categories
-- products can have images
-- products can have portfolio or specs
-
-
-
 @extends('layouts.app')
+@section('menu-home', 'active')
+
+@section('header-imports')
+<link rel="stylesheet" href="{{ asset('assets/css/product-overlay.css') }}">
+@endsection
+
 @section('content')
 <div class="banner-bg">
     <!-- banner-area -->
@@ -16,10 +14,9 @@
                 <div class="col-lg-6 col-md-8">
                     <div class="banner-content">
                         <h2 style="display: flex; align-items: center; margin-bottom: 2rem;">Poxel</h2>
-                        <h2 class="title poxel-title">Graphics and apparel printing services</h2>
+                        <h2 class="title poxel-title">Graphics and apparels printing services</h2>
                         <p>Offers quality and affordable Digital Printing, Dye Sublimation and Outdoor Signage.</p>
-                        <a href="login-register.html" class="banner-btn">Products & Services <i
-                                class="fi-sr-arrow-right"></i></a>
+                        <a href="#" class="banner-btn">Products & Services <i class="fi-sr-arrow-right"></i></a>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-12">
@@ -58,215 +55,61 @@
 </div>
 
 <div class="top-seller-area">
-
     <div class="container">
-        <div class="top-seller-wrap">
-
-
-            <div class="section-title mt-70 mb-40">
-                <h2 class="title justify-content-center text-uppercase">Services Offered
-                </h2>
-            </div>
-
-
-
-            <div class="category-area">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12">
-                            <ul class="category-list">
-                                <li class="active"><a href="index.html">SUBLIMATION</a></li>
-                                <li><a href="index.html">TARPAULIN</a></li>
-                                <li><a href="index.html">ACRYLIC</a></li>
-                                <li><a href="index.html">SIGNAGE</a></li>
-                                <li><a href="index.html">STICKER</a></li>
-                            </ul>
-                        </div>
+        <div class="section-title mt-70 mb-40">
+            <h2 class="title justify-content-center text-uppercase">Services Offered
+            </h2>
+        </div>
+        <div class="category-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <ul class="category-list">
+                            @foreach($services as $service)
+                            <li><a href="{{ route('services.view', $service->id) }}" class="text-uppercase">{{ $service->name }}</a></li>
+                            @endforeach
+                        </ul>
                     </div>
                 </div>
             </div>
-
-
-
         </div>
     </div>
-
 </div>
 
-<section class="explore-products-area">
+<section class="top-collection-area">
     <div class="container">
-       
-    <div class="section-title mb-35">
-                    <h2 class="title justify-content-center poxel-title">Featured Products</h2>
-                </div>
-
-        <div class="filter-category-wrap">
-            <div class="row">
-                <div class="col-12">
-                    <ul class="category-list">
-                        <li class="active"><a href="index.html"><img src="assets/img/icons/cat_001.png" alt="">
-                                All</a></li>
-                        <li><a href="nft-marketplace.html"><img src="assets/img/icons/cat_01.png" alt=""> Games</a>
-                        </li>
-                        <li><a href="nft-marketplace.html"><img src="assets/img/icons/cat_02.png" alt=""> Art</a>
-                        </li>
-                        <li><a href="nft-marketplace.html"><img src="assets/img/icons/cat_03.png" alt=""> Trading
-                                Cards</a></li>
-                        <li><a href="nft-marketplace.html"><img src="assets/img/icons/cat_04.png" alt=""> Music</a>
-                        </li>
-                        <li><a href="nft-marketplace.html"><img src="assets/img/icons/cat_05.png" alt=""> Domain
-                                Names</a></li>
-                        <li><a href="nft-marketplace.html"><img src="assets/img/icons/cat_06.png" alt=""> Memes</a>
-                        </li>
-                        <li><a href="nft-marketplace.html"><img src="assets/img/icons/cat_07.png" alt="">
-                                Collectibles</a></li>
-                    </ul>
-                </div>
-            </div>
+        <div class="section-title mb-40">
+            <h2 class="title justify-content-center text-uppercase poxel-title">Featured Products
+            </h2>
         </div>
-        <div class="row justify-content-center">
-            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-                <div class="top-collection-item">
-                    <div class="collection-item-thumb">
-                        <a href="market-single.html"><img src="assets/img/products/hats.jpeg" alt=""></a>
+        <div class="row top-collection-active">
+            @foreach($featured_service_products as $featured_service_product)
+            <div class="col-xl-3">
+                <div class="product-listing" id="{{ $featured_service_product->service->name }}">
+                    <div class="main-image">
+                        <span class="category">{{ $featured_service_product->service->name }}</span>
+                        <img src="{{ $featured_service_product->main_image_url }}"
+                            alt="{{ $featured_service_product->name }}" class="image">
                     </div>
-                    <div class="collection-item-content">
-                        <h5 class="title"><a href="market-single.html">Caps and Hats</a> <span class="price">600.00
-                                Php</span></h5>
-                    </div>
-                    <div class="collection-item-bottom">
-                        <ul>
-                            <li class="bid"><a href="market-single.html" class="btn">Buy now</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-                <div class="top-collection-item">
-                    <div class="collection-item-thumb">
-                        <a href="market-single.html"><img src="assets/img/products/sleeves.jpg" alt=""></a>
-                    </div>
-                    <div class="collection-item-content">
-                        <h5 class="title"><a href="market-single.html">Arm Sleeve</a> <span class="price">600.00
-                                Php</span>
-                        </h5>
-                    </div>
-                    <div class="collection-item-bottom">
-                        <ul>
-                            <li class="bid"><a href="market-single.html" class="btn">Buy now</a></li>
-                        </ul>
+                    <div class="product-footer">
+                        <div class="product-name">
+                            <h2>{{ $featured_service_product->name }}</h2>
+                        </div>
+                        <a href="{{ route('products.view', $featured_service_product->id) }}" class="btn-outline ml-auto" tabindex="0">View
+                            Product</a>
                     </div>
                 </div>
             </div>
-
-            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-                <div class="top-collection-item">
-                    <div class="collection-item-thumb">
-                        <a href="market-single.html"><img src="assets/img/products/hats.jpeg" alt=""></a>
-                    </div>
-                    <div class="collection-item-content">
-                        <h5 class="title"><a href="market-single.html">Caps and Hats</a> <span class="price">600.00
-                                Php</span></h5>
-                    </div>
-                    <div class="collection-item-bottom">
-                        <ul>
-                            <li class="bid"><a href="market-single.html" class="btn">Buy now</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-                <div class="top-collection-item">
-                    <div class="collection-item-thumb">
-                        <a href="market-single.html"><img src="assets/img/products/sleeves.jpg" alt=""></a>
-                    </div>
-                    <div class="collection-item-content">
-                        <h5 class="title"><a href="market-single.html">Arm Sleeve</a> <span class="price">600.00
-                                Php</span>
-                        </h5>
-                    </div>
-                    <div class="collection-item-bottom">
-                        <ul>
-                            <li class="bid"><a href="market-single.html" class="btn">Buy now</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-                <div class="top-collection-item">
-                    <div class="collection-item-thumb">
-                        <a href="market-single.html"><img src="assets/img/products/hats.jpeg" alt=""></a>
-                    </div>
-                    <div class="collection-item-content">
-                        <h5 class="title"><a href="market-single.html">Caps and Hats</a> <span class="price">600.00
-                                Php</span></h5>
-                    </div>
-                    <div class="collection-item-bottom">
-                        <ul>
-                            <li class="bid"><a href="market-single.html" class="btn">Buy now</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-                <div class="top-collection-item">
-                    <div class="collection-item-thumb">
-                        <a href="market-single.html"><img src="assets/img/products/sleeves.jpg" alt=""></a>
-                    </div>
-                    <div class="collection-item-content">
-                        <h5 class="title"><a href="market-single.html">Arm Sleeve</a> <span class="price">600.00
-                                Php</span>
-                        </h5>
-                    </div>
-                    <div class="collection-item-bottom">
-                        <ul>
-                            <li class="bid"><a href="market-single.html" class="btn">Buy now</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-                <div class="top-collection-item">
-                    <div class="collection-item-thumb">
-                        <a href="market-single.html"><img src="assets/img/products/hats.jpeg" alt=""></a>
-                    </div>
-                    <div class="collection-item-content">
-                        <h5 class="title"><a href="market-single.html">Caps and Hats</a> <span class="price">600.00
-                                Php</span></h5>
-                    </div>
-                    <div class="collection-item-bottom">
-                        <ul>
-                            <li class="bid"><a href="market-single.html" class="btn">Buy now</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-                <div class="top-collection-item">
-                    <div class="collection-item-thumb">
-                        <a href="market-single.html"><img src="assets/img/products/sleeves.jpg" alt=""></a>
-                    </div>
-                    <div class="collection-item-content">
-                        <h5 class="title"><a href="market-single.html">Arm Sleeve</a> <span class="price">600.00
-                                Php</span>
-                        </h5>
-                    </div>
-                    <div class="collection-item-bottom">
-                        <ul>
-                            <li class="bid"><a href="market-single.html" class="btn">Buy now</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+            @endforeach
+        </div>
+        <div class="flex">
+            <div class="ml-auto top-collection-nav"></div>
         </div>
     </div>
 </section>
 
-
 <!-- explore-products-area -->
-<section class="explore-products-area">
+<!-- <section class="explore-products-area">
     <div class="container">
         <div class="row mb-35">
             <div class="col-md-7 col-sm-8">
@@ -442,7 +285,7 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->
 <!-- explore-products-area-end -->
 
 <!-- latest-news -->
@@ -463,11 +306,11 @@
                     </div>
                     <div class="latest-news-content">
                         <ul class="latest-news-meta">
-                            <li><i class="flaticon-user"></i><a href="blog.html">Admin</a></li>
+                            <li><i class="flaticon-user"></i><a href="#">Admin</a></li>
                             <li><i class="fi-sr-calendar"></i> Jan 12, 2022</li>
                         </ul>
-                        <h4 class="title"><a href="blog-details.html">Basketball League 2023</a></h4>
-                        <a href="blog-details.html" class="btn">read more</a>
+                        <h4 class="title"><a href="#l">Basketball League 2023</a></h4>
+                        <a href="#" class="btn">read more</a>
                     </div>
                 </div>
             </div>
@@ -478,11 +321,11 @@
                     </div>
                     <div class="latest-news-content">
                         <ul class="latest-news-meta">
-                            <li><i class="flaticon-user"></i><a href="blog.html">Admin</a></li>
+                            <li><i class="flaticon-user"></i><a href="#">Admin</a></li>
                             <li><i class="fi-sr-calendar"></i> Jan 19, 2022</li>
                         </ul>
-                        <h4 class="title"><a href="blog-details.html">First trial and run samples</a></h4>
-                        <a href="blog-details.html" class="btn">read more</a>
+                        <h4 class="title"><a href="#">First trial and run samples</a></h4>
+                        <a href="#" class="btn">read more</a>
                     </div>
                 </div>
             </div>
@@ -493,12 +336,12 @@
                     </div>
                     <div class="latest-news-content">
                         <ul class="latest-news-meta">
-                            <li><i class="flaticon-user"></i><a href="blog.html">Admin</a></li>
+                            <li><i class="flaticon-user"></i><a href="#">Admin</a></li>
                             <li><i class="fi-sr-calendar"></i> Jan 19, 2022</li>
                         </ul>
-                        <h4 class="title"><a href="blog-details.html">Crypto enthusiasts on a single platform to
+                        <h4 class="title"><a href="#">Crypto enthusiasts on a single platform to
                                 create</a></h4>
-                        <a href="blog-details.html" class="btn">read more</a>
+                        <a href="#" class="btn">read more</a>
                     </div>
                 </div>
             </div>
