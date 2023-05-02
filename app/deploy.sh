@@ -1,6 +1,6 @@
 rm -rfd ~/public_html
 mkdir ~/public_html
-cp -r ~/repositories/poxel-graphics/app/* ~/public_html
+cp -a ~/repositories/poxel-graphics/app/. ~/public_html
 cp ~/env/.env ~/public_html/.env
 cd ~/public_html
 # Install
