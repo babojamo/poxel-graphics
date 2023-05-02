@@ -80,7 +80,7 @@
                                 <select class="form-control" name="service" id="service">
                                     <option value="">Select</option>
                                     @foreach($services as $service)
-                                    <option value="{{ $service->id }}" {{ (old('service') ? old('service') : $service->id) === $product->service_id ? 'selected' : '' }}>
+                                    <option value="{{ $service->id }}" {{ (old('service') ? old('service') : $service->id) == $product->service_id ? 'selected' : '' }}>
                                         {{ $service->name }}
                                     </option>
                                     @endforeach
