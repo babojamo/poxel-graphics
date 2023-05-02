@@ -89,7 +89,7 @@ class ProductsController extends Controller
             $path = $request->file('main_image')->store(
                 'products', 'public'
             );
-            $product->main_image_url = asset('storage/' . $path);
+            $product->main_image_url = Storage::disk('public')->url($path);
         }
 
         $product->service_id = $attributes['service'];
