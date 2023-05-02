@@ -100,4 +100,12 @@ class ProductsController extends Controller
 
         return redirect()->back()->with('success','Product updated successfully');
     }
+
+    public function delete($id)
+    {
+        $product = ServiceProduct::findOrFail($id);
+        $product->delete();
+        
+        return redirect()->back()->with('success','Product deleted successfully');
+    }
 }

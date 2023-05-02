@@ -40,6 +40,7 @@ Route::prefix('products')->name('products')->group(function(){
         return view('products-services.products');
     });
     Route::get('/{product}', [ProductsController::class, 'view'])->name('.view');
+    Route::get('/detail/{product}', [ProductsController::class, 'detail'])->name('.detail');
 });
 
 Route::prefix('news')->name('news')->group(function(){
@@ -91,12 +92,17 @@ Route::name('admin')->middleware('auth')->prefix('admin')->group(function () {
         Route::post('create', [AdminProductsController::class, 'store'])->name('.store');
         Route::get('{id}', [AdminProductsController::class, 'view'])->name('.view');
         Route::patch('{id}', [AdminProductsController::class, 'update'])->name('.update');
+        Route::delete('{id}', [AdminProductsController::class, 'delete'])->name('.delete');
     });
 
 });
 
 
 Route::group(['middleware' => 'auth'], function () {
+
+    Route::get('dashboard', function () {
+		return view('admin/billing');
+	})->name('dashboard');
 
 	Route::get('billing', function () {
 		return view('admin/billing');
