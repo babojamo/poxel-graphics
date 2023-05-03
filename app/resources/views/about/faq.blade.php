@@ -51,7 +51,7 @@
                 </blockquote>
                 <blockquote>
                     <h5>Q: What are your mode of payments?</h5>
-                    We accept payment through Cash, Gash, Bank Transfer, Check or through Palawan.
+                    We accept payment through Cash, Gcash, Bank Transfer, Check or through Palawan.
                 </blockquote>
             </div>
         </div>
