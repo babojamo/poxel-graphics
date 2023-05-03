@@ -27,7 +27,6 @@ class LoyalCustomersController extends Controller
             asset('assets/img/clients/mitsubishi.png'),
             asset('assets/img/clients/roz_lab.png'),
         ];
-
         return view('about.partners', [
             'customers' => $customers
         ]);

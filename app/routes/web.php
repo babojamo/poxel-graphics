@@ -14,9 +14,6 @@ use App\Http\Controllers\Admin\ResetController;
 use App\Http\Controllers\Admin\ChangePasswordController;
 use App\Http\Controllers\Admin\ProductsController as AdminProductsController;
 
-
-
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -50,8 +47,10 @@ Route::prefix('news')->name('news')->group(function(){
 });
 
 
-Route::post('/quotation', [GetQuotationController::class,'send'])->name('quotation.send');
-Route::get('/quotation', [GetQuotationController::class,'index'])->name('quotation');
+Route::prefix('quotation')->name('quotation')->group(function() {
+    Route::get('/', [GetQuotationController::class,'index']);
+    Route::post('/', [GetQuotationController::class,'send'])->name('.send');
+});
 
 Route::name('about')->group(function() {
 
@@ -82,10 +81,7 @@ Route::name('about')->group(function() {
     })->name('.faq');
 });
 
-
-
 Route::name('admin')->middleware('auth')->prefix('admin')->group(function () {
-
     Route::name('.products')->prefix('products')->group(function () {
         Route::get('', [AdminProductsController::class, 'index']);
         Route::get('create', [AdminProductsController::class, 'create'])->name('.create');
@@ -93,49 +89,11 @@ Route::name('admin')->middleware('auth')->prefix('admin')->group(function () {
         Route::get('{id}', [AdminProductsController::class, 'view'])->name('.view');
         Route::patch('{id}', [AdminProductsController::class, 'update'])->name('.update');
         Route::delete('{id}', [AdminProductsController::class, 'delete'])->name('.delete');
+        Route::post('upload-image/{id}', [AdminProductsController::class, 'uploadImage'])->name('.images');
     });
-
 });
 
-
 Route::group(['middleware' => 'auth'], function () {
-
-    Route::get('dashboard', function () {
-		return view('admin/billing');
-	})->name('dashboard');
-
-	Route::get('billing', function () {
-		return view('admin/billing');
-	})->name('billing');
-
-	Route::get('profile', function () {
-		return view('admin/profile');
-	})->name('profile');
-
-	Route::get('rtl', function () {
-		return view('rtl');
-	})->name('rtl');
-
-	Route::get('user-management', function () {
-		return view('admin/laravel-examples/user-management');
-	})->name('user-management');
-
-	Route::get('tables', function () {
-		return view('admin/tables');
-	})->name('tables');
-
-    Route::get('virtual-reality', function () {
-		return view('admin/virtual-reality');
-	})->name('virtual-reality');
-
-    Route::get('static-sign-in', function () {
-		return view('admin/static-sign-in');
-	})->name('sign-in');
-
-    Route::get('static-sign-up', function () {
-		return view('admin/static-sign-up');
-	})->name('sign-up');
-
     Route::get('/logout', [SessionsController::class, 'destroy']);
 	Route::get('/user-profile', [InfoUserController::class, 'create']);
 	Route::post('/user-profile', [InfoUserController::class, 'store']);
