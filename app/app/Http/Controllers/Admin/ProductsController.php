@@ -81,6 +81,7 @@ class ProductsController extends Controller
             'main_image' => ['nullable'],
             'featured' => ['nullable'],
             'content' => ['nullable'],
+            'images' => ['nullable'],
         ]);
 
         $product = ServiceProduct::findOrFail($id);
@@ -96,6 +97,7 @@ class ProductsController extends Controller
         $product->name = $attributes['name'];
         $product->featured = isset($attributes['featured']) && $attributes['featured'] == 'on' ? true : false;
         $product->content = $attributes['content'];
+        $product->images = $attributes['images'];
         $product->save();
 
         return redirect()->back()->with('success','Product updated successfully');
@@ -107,5 +109,27 @@ class ProductsController extends Controller
         $product->delete();
         
         return redirect()->back()->with('success','Product deleted successfully');
+    }
+
+    public function uploadImage(Request $request, $id)
+    {
+        $attributes = request()->validate([
+            'images' => ['required'],
+        ]);
+
+        $images = [];
+
+        $product = ServiceProduct::findOrFail($id);
+
+        foreach ($request->images as $image) {
+            $images[] = Storage::disk('public')->url($image->store(
+                "products/{$product->id}", 'public'
+            ));
+        }
+        
+        $product->images = array_merge($product->image_highlights, $images);
+        $product->save();
+
+        return redirect()->back()->with('success','Image uploaded successfully');
     }
 }
