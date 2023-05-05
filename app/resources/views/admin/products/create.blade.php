@@ -63,7 +63,7 @@
                         <div class="form-group">
                             <label for="product-name" class="form-control-label">Name</label>
                             <div class="@error('name')border border-danger rounded-3 @enderror">
-                                <input class="form-control" type="text" placeholder="Name" id="product-name"
+                                <input class="form-control" type="text" value="{{ old('name') }}" placeholder="Name" id="product-name"
                                     name="name">
                                 @error('name')
                                 <p class="text-danger text-xs mt-2">{{ $message }}</p>
@@ -80,7 +80,9 @@
                                 <select class="form-control" name="service" id="service">
                                     <option value="">Select</option>
                                     @foreach($services as $service)
-                                    <option value="{{ $service->id }}">{{ $service->name }}</option>
+                                    <option value="{{ $service->id }}"
+                                        {{ old('service') == $service->id ? 'selected' : '' }}
+                                        >{{ $service->name }}</option>
                                     @endforeach
                                 </select>
                                 @error('service')
@@ -109,7 +111,7 @@
                         <div class="form-group">
 
                             <div class="@error('featured') border border-danger rounded-3 @enderror" class="form-check">
-                                <input type="checkbox" name="featured"  id="featured">
+                                <input type="checkbox" name="featured"  id="featured" {{ old('featured') === 'on' ? 'checked' : '' }}>
                                 <label class="custom-control-label" for="customCheck1">Featured</label>
                             </div>
 
@@ -121,7 +123,7 @@
                     <label for="content">Content</label>
                     <div class="@error('content')border border-danger rounded-3 @enderror">
                         <textarea class="form-control" id="content" rows="3" placeholder="Product specifications"
-                            name="content"></textarea>
+                            name="content">{{ old('content') }}</textarea>
                     </div>
                 </div>
                 <div class="d-flex justify-content-end">

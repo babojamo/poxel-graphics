@@ -107,8 +107,7 @@
                             </div>
                             <div class="col-md-6">
                                 <ul class="copyright-link-list">
-                                    <li><a href="#">Privacy Policy</a></li>
-                                    <li><a href="#">Terms And Condition</a></li>
+                                    <li><a href="#">Privacy & Terms</a></li>
                                     <li><a href="{{ route('about.contact') }}">Contact Us</a></li>
                                 </ul>
                             </div>

@@ -2,10 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ProductsController;
-use App\Http\Controllers\ServicesController;
+use App\Http\Controllers\ProductsServicesController;
 use App\Http\Controllers\LoyalCustomersController;
 use App\Http\Controllers\GetQuotationController;
+use App\Http\Controllers\NewsController;
 
 use App\Http\Controllers\Admin\SessionsController;
 use App\Http\Controllers\Admin\InfoUserController;
@@ -13,6 +13,8 @@ use App\Http\Controllers\Admin\RegisterController;
 use App\Http\Controllers\Admin\ResetController;
 use App\Http\Controllers\Admin\ChangePasswordController;
 use App\Http\Controllers\Admin\ProductsController as AdminProductsController;
+use App\Http\Controllers\Admin\PostsController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -28,22 +30,19 @@ use App\Http\Controllers\Admin\ProductsController as AdminProductsController;
 Route::get('/', [HomeController::class, 'index']);
 
 Route::prefix('services')->name('services')->group(function(){
-    Route::get('/', [ServicesController::class, 'index']); 
-    Route::get('/{id}', [ServicesController::class, 'view'])->name('.view');
+    Route::get('/{id}', [ProductsServicesController::class, 'serviceProducts'])->name('.view');
 });
 
 Route::prefix('products')->name('products')->group(function(){
-    Route::get('/', function () {
-        return view('products-services.products');
-    });
-    Route::get('/{product}', [ProductsController::class, 'view'])->name('.view');
-    Route::get('/detail/{product}', [ProductsController::class, 'detail'])->name('.detail');
+    Route::get('/', [ProductsServicesController::class, 'index']);
+    Route::get('/{product}', [ProductsServicesController::class, 'view'])->name('.view');
+    Route::get('/detail/{product}', [ProductsServicesController::class, 'peek'])->name('.detail');
 });
 
 Route::prefix('news')->name('news')->group(function(){
-    Route::get('/', function () {
-        return view('news');
-    });
+    Route::get('/', [NewsController::class, 'index']);
+    Route::get('/peek/{post}', [NewsController::class, 'peek'])->name('.peek');
+    Route::get('/{slug}', [NewsController::class, 'view'])->name('.view');
 });
 
 
@@ -91,15 +90,22 @@ Route::name('admin')->middleware('auth')->prefix('admin')->group(function () {
         Route::delete('{id}', [AdminProductsController::class, 'delete'])->name('.delete');
         Route::post('upload-image/{id}', [AdminProductsController::class, 'uploadImage'])->name('.images');
     });
+
+    Route::name('.posts')->prefix('posts')->group(function () {
+        Route::get('', [PostsController::class, 'index']);
+        Route::get('create', [PostsController::class, 'create'])->name('.create');
+        Route::post('create', [PostsController::class, 'store'])->name('.store');
+        Route::get('{id}', [PostsController::class, 'view'])->name('.view');
+        Route::patch('{id}', [PostsController::class, 'update'])->name('.update');
+        Route::delete('{id}', [PostsController::class, 'delete'])->name('.delete');
+        Route::post('upload-image/{id}', [PostsController::class, 'uploadImage'])->name('.images');
+    });
 });
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/logout', [SessionsController::class, 'destroy']);
 	Route::get('/user-profile', [InfoUserController::class, 'create']);
 	Route::post('/user-profile', [InfoUserController::class, 'store']);
-    Route::get('/login', function () {
-		return view('dashboard');
-	})->name('sign-up');
 });
 
 Route::group(['middleware' => 'guest'], function () {
@@ -114,5 +120,8 @@ Route::group(['middleware' => 'guest'], function () {
 });
 
 Route::get('/login', function () {
+    if(auth()->user())
+        return redirect()->route('admin.products');
+        
     return view('admin/session/login-session');
 })->name('login');
