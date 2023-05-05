@@ -19,8 +19,8 @@ class CreatePostsTable extends Migration
             $table->text('featured_image_url')->nullable();
             $table->text('thumbnail_image_url')->nullable();
             $table->text('title');
-            $table->json('categories');
-            $table->json('tags');
+            $table->json('categories')->nullable();
+            $table->json('tags')->nullable();
             $table->text('slug')->nullable();
             $table->longText('content');
             $table->foreign('created_by')->references('id')->on('users');

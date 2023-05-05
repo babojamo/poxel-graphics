@@ -73,37 +73,22 @@
                         <h4 class="sidebar-title">Recent Post</h4>
                         <div class="rc-post-list">
                             <ul>
-                                <li>
-                                    <div class="rc-post-thumb">
-                                        <a href="blog-details.html"><img src="assets/img/blog/rc_post_thumb01.jpg"
-                                                alt=""></a>
-                                    </div>
-                                    <div class="rc-post-content">
-                                        <ul class="standard-blog-meta">
-                                            <li><a href="#"><i class="flaticon-avatar"></i>Admin</a></li>
-                                            <li><a href="#"><i class="flaticon-calendar"></i>Mar 10,
-                                                    2022</a></li>
-                                        </ul>
-                                        <h5 class="title"><a href="blog-details.html">Marketplace is the
-                                                online shop for the video</a></h5>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="rc-post-thumb">
-                                        <a href="blog-details.html"><img src="assets/img/blog/rc_post_thumb02.jpg"
-                                                alt=""></a>
-                                    </div>
-                                    <div class="rc-post-content">
-                                        <ul class="standard-blog-meta">
-                                            <li><a href="#"><i class="flaticon-avatar"></i>Admin</a></li>
-                                            <li><a href="#"><i class="flaticon-calendar"></i>Mar 10,
-                                                    2022</a></li>
-                                        </ul>
-                                        <h5 class="title"><a href="blog-details.html">Marketplace is the
-                                                online shop for the video</a></h5>
-                                    </div>
-                                </li>
-                            </ul>
+                                    @foreach($recent_posts as $recent_post)
+                                    <li>
+                                        <div class="rc-post-thumb">
+                                            <a href="blog-details.html"><img src="{{ $recent_post->featured_image_url }}" alt="{{ $recent_post->title }}"></a>
+                                        </div>
+                                        <div class="rc-post-content">
+                                            <ul class="standard-blog-meta">
+                                                <li><a href="{{ $recent_post->news_route }}"><i class="flaticon-avatar"></i>{{ $recent_post->user->name }}</a></li>
+                                                <li><a href="{{ $recent_post->news_route }}"><i class="flaticon-calendar"></i>{{ $recent_post->created_at->diffForHumans() }}</a></li>
+                                            </ul>
+                                            <h5 class="title"><a href="blog-details.html">{{ $recent_post->title }}</a></h5>
+                                        </div>
+                                    </li>
+
+                                    @endforeach
+                                </ul>
                         </div>
                     </div>
                 </aside>
