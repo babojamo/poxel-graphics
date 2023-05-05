@@ -102,7 +102,7 @@ class GetQuotationController extends Controller
             'reference' => 'file|nullable',
         ]);
         
-        Mail::to('kevin.loquencio@gmail.com')->send(new GetQuotation($request));
+        Mail::to(config('app.poxel.quotation_receiver'))->send(new GetQuotation($request));
  
         return redirect()->back()->with('success', 'Thank you for your message! We appreciate your interest in our services and we are glad to hear that we will be able to provide you with a quotation soon.');
     }

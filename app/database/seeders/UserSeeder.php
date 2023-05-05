@@ -17,9 +17,9 @@ class UserSeeder extends Seeder
     {
         DB::table('users')->insert([
             'id' => 1,
-            'name' => 'admin',
-            'email' => 'admin@softui.com',
-            'password' => Hash::make('secret'),
+            'name' => 'Poxel Administrator',
+            'email' => 'admin@poxelgraphics.ph',
+            'password' => Hash::make('poxeldefault!23'),
             'created_at' => now(),
             'updated_at' => now()
         ]);

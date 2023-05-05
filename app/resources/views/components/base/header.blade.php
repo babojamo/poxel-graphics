@@ -9,15 +9,15 @@
                             <div class="logo"><a href="/"><img src="{{ asset('assets/img/logo/poxel_logo.png') }}" alt=""></a>
                             </div>
                             <div class="header-form">
-                                <form action="#">
+                                <form action="{{ route('products') }}">
                                     <button><i class="flaticon-search"></i></button>
-                                    <input type="text" placeholder="Search Products">
+                                    <input type="text" name="pk" value="{{ request('pk') }}" placeholder="Search Products">
                                 </form>
                             </div>
                             <div class="navbar-wrap main-menu d-none d-lg-flex">
                                 <ul class="navigation">
                                     <li class="@yield('menu-home')"><a href="/">Home</a></li>
-                                    <li class="menu-item-has-children @yield('menu-product')"><a href="#">Products & Services</a>
+                                    <li class="menu-item-has-children @yield('menu-product')"><a href="{{ route('products') }}">Products & Services</a>
                                         <ul class="submenu">
                                             @foreach($service_menu as $menu)
                                             <li><a href="{{ route('services.view', $menu->id) }}">{{ $menu->name }}</a></li>

@@ -77,11 +77,6 @@
 
 @section('footer-imports')
 <link rel="stylesheet" href="{{ asset('assets/css/product-gallery.css') }}">
-<script>
-    function resizeIframe(obj) {
-        obj.style.height = (obj.contentWindow.document.documentElement.scrollHeight + 20) + 'px';
-    }
-</script>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"
     integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
 

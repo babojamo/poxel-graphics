@@ -2,6 +2,10 @@
 
 return [
 
+    'poxel' => [
+        'quotation_receiver' => env('QUOTATION_EMAIL', 'quotations@poxelgraphics.ph'),
+    ],
+    
     /*
     |--------------------------------------------------------------------------
     | Application Name

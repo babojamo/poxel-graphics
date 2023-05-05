@@ -299,52 +299,31 @@
             </div>
         </div>
         <div class="row justify-content-center">
+            @if($posts->count() <= 0)
+                <div class="mt-80 mb-50">
+                    <h2 class="title poxel-title text-center mb-30">At present, we do not have any news or events to share, but please feel free to take a look at our products.</h2>
+                    <p class="text-center"><a href="{{ route('products') }}" class="btn-outline">Go to products</a></p>
+                </div>
+            @endif
+            @foreach($posts as $post)
             <div class="col-xl-4 col-md-6 col-sm-9">
                 <div class="latest-news-item">
                     <div class="latest-news-thumb">
-                        <img src="assets/img/blog/news_thumb01.png" alt="">
+                        <img src="{{ $post->thumbnail_image_url }}" alt="{{ $post->title }}"
+                        onerror="this.onerror=null; this.src='{{ asset('assets/img/blog/news_thumb01.png') }}'"
+                        >
                     </div>
                     <div class="latest-news-content">
                         <ul class="latest-news-meta">
-                            <li><i class="flaticon-user"></i><a href="#">Admin</a></li>
-                            <li><i class="fi-sr-calendar"></i> Jan 12, 2022</li>
+                            <li><i class="flaticon-user"></i><a href="#">{{ $post->user->name }}</a></li>
+                            <li><i class="fi-sr-calendar"></i> {{ $post->created_at->diffForHumans() }}</li>
                         </ul>
-                        <h4 class="title"><a href="#l">Basketball League 2023</a></h4>
-                        <a href="#" class="btn">read more</a>
+                        <h4 class="title"><a href="#l">{{ $post->title }}</a></h4>
+                        <a href="{{ route('news.view', $post->slug) }}" class="btn">read more</a>
                     </div>
                 </div>
             </div>
-            <div class="col-xl-4 col-md-6 col-sm-9">
-                <div class="latest-news-item">
-                    <div class="latest-news-thumb">
-                        <img src="assets/img/blog/news_thumb02.png" alt="">
-                    </div>
-                    <div class="latest-news-content">
-                        <ul class="latest-news-meta">
-                            <li><i class="flaticon-user"></i><a href="#">Admin</a></li>
-                            <li><i class="fi-sr-calendar"></i> Jan 19, 2022</li>
-                        </ul>
-                        <h4 class="title"><a href="#">First trial and run samples</a></h4>
-                        <a href="#" class="btn">read more</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-4 col-md-6 col-sm-9">
-                <div class="latest-news-item">
-                    <div class="latest-news-thumb">
-                        <img src="assets/img/blog/news_thumb03.png" alt="">
-                    </div>
-                    <div class="latest-news-content">
-                        <ul class="latest-news-meta">
-                            <li><i class="flaticon-user"></i><a href="#">Admin</a></li>
-                            <li><i class="fi-sr-calendar"></i> Jan 19, 2022</li>
-                        </ul>
-                        <h4 class="title"><a href="#">Crypto enthusiasts on a single platform to
-                                create</a></h4>
-                        <a href="#" class="btn">read more</a>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </section>
