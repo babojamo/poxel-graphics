@@ -1,5 +1,9 @@
 @extends('layouts.app')
 @section('menu-news', 'active')
+
+@section('meta-description', $post->title)
+@section('meta-keyword', "Poxel graphics and printing services, {$post->title}, printing, products")
+
 @section('title', $post->title)
 @section('header-imports')
 <script>
@@ -21,9 +25,9 @@
                     </div>
                     <div class="standard-blog-content">
                         <ul class="standard-blog-meta">
-                            <li><a href="{{ $post->news_route }}"><i
+                            <li><a href="{{ $post->slug_route }}"><i
                                         class="flaticon-avatar"></i>{{ $post->user->name }}</a></li>
-                            <li><a href="{{ $post->news_route }}"><i
+                            <li><a href="{{ $post->slug_route }}"><i
                                         class="flaticon-calendar"></i>{{ $post->created_at->diffForHumans() }}</a></li>
                         </ul>
                         <h4 class="title">{{ $post->title }}</h4>
@@ -118,8 +122,8 @@
                                     </div>
                                     <div class="rc-post-content">
                                         <ul class="standard-blog-meta">
-                                            <li><a href="{{ $recent_post->news_route }}"><i class="flaticon-avatar"></i>{{ $recent_post->user->name }}</a></li>
-                                            <li><a href="{{ $recent_post->news_route }}"><i class="flaticon-calendar"></i>{{ $recent_post->created_at->diffForHumans() }}</a></li>
+                                            <li><a href="{{ $recent_post->slug_route }}"><i class="flaticon-avatar"></i>{{ $recent_post->user->name }}</a></li>
+                                            <li><a href="{{ $recent_post->slug_route }}"><i class="flaticon-calendar"></i>{{ $recent_post->created_at->diffForHumans() }}</a></li>
                                         </ul>
                                         <h5 class="title"><a href="blog-details.html">{{ $recent_post->title }}</a></h5>
                                     </div>

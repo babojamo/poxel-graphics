@@ -1,4 +1,10 @@
 @extends('layouts.app')
+
+@section('meta-description')
+At Poxel Graphics and Apparel Services, we strive to provide the highest level of customer service to all of our valued clients. Whether you have a question about our products, need assistance with an order, or just want to provide feedback, our friendly and knowledgeable customer service team is here to help. Talk to us!
+@endsection
+@section('meta-keyword', "Poxel graphics and printing services, contact us, printing, products")
+
 @section('menu-about', 'active')
 @section('title', 'Contact us')
 @section('header-imports')

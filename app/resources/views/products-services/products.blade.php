@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', 'All Products')
 @section('header-imports')
 <link rel="stylesheet" href="{{ asset('assets/css/product-overlay.css') }}">
 @endsection
@@ -30,7 +31,7 @@
                         <div class="product-name">
                             <h2>{{ $product->name }}</h2>
                         </div>
-                        <a href="{{ route('products.view', $product->id) }}" class="btn-outline ml-auto" tabindex="0">View
+                        <a href="{{ $product->slug_route }}" class="btn-outline ml-auto" tabindex="0">View
                             Product</a>
                     </div>
                 </div>

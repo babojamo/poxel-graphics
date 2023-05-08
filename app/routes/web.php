@@ -30,12 +30,12 @@ use App\Http\Controllers\Admin\PostsController;
 Route::get('/', [HomeController::class, 'index']);
 
 Route::prefix('services')->name('services')->group(function(){
-    Route::get('/{id}', [ProductsServicesController::class, 'serviceProducts'])->name('.view');
+    Route::get('/{slug}', [ProductsServicesController::class, 'serviceProducts'])->name('.view');
 });
 
 Route::prefix('products')->name('products')->group(function(){
     Route::get('/', [ProductsServicesController::class, 'index']);
-    Route::get('/{product}', [ProductsServicesController::class, 'view'])->name('.view');
+    Route::get('/{slug}', [ProductsServicesController::class, 'view'])->name('.view');
     Route::get('/detail/{product}', [ProductsServicesController::class, 'peek'])->name('.detail');
 });
 

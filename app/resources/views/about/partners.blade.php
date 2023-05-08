@@ -1,5 +1,9 @@
 @extends('layouts.app')
 @section('menu-about', 'active')
+
+@section('meta-description', "We're grateful for every customer who has chosen and trusted us with our services, and we look forward to continuing to serve them for years to come.")
+@section('meta-keyword', "Poxel graphics and printing services, loyal customers, printing, products")
+
 @section('title', 'Loyal Customers')
 @section('content')
 <section class="blog-details-area pt-180 pb-80">

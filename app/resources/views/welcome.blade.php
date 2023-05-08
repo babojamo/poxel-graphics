@@ -16,7 +16,7 @@
                         <h2 style="display: flex; align-items: center; margin-bottom: 2rem;">Poxel</h2>
                         <h2 class="title poxel-title">Graphics and apparels printing services</h2>
                         <p>Offers quality and affordable Digital Printing, Dye Sublimation and Outdoor Signage.</p>
-                        <a href="#" class="banner-btn">Products & Services <i class="fi-sr-arrow-right"></i></a>
+                        <a href="{{ route('products') }}" class="banner-btn">Products & Services <i class="fi-sr-arrow-right"></i></a>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-12">
@@ -66,7 +66,7 @@
                     <div class="col-12">
                         <ul class="category-list">
                             @foreach($services as $service)
-                            <li><a href="{{ route('services.view', $service->id) }}" class="text-uppercase">{{ $service->name }}</a></li>
+                            <li><a href="{{ $service->slug_route }}" class="text-uppercase">{{ $service->name }}</a></li>
                             @endforeach
                         </ul>
                     </div>
@@ -95,7 +95,7 @@
                         <div class="product-name">
                             <h2>{{ $featured_service_product->name }}</h2>
                         </div>
-                        <a href="{{ route('products.view', $featured_service_product->id) }}" class="btn-outline ml-auto" tabindex="0">View
+                        <a href="{{ $featured_service_product->slug_route }}" class="btn-outline ml-auto" tabindex="0">View
                             Product</a>
                     </div>
                 </div>

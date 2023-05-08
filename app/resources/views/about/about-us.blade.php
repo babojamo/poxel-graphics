@@ -2,6 +2,18 @@
 @section('menu-about', 'active')
 @section('title', 'Who we are')
 
+@section('meta-description')
+Established in 2017, Poxel Graphics and Apparels Printing Services started as Ace Printing Services. Providing customers with sticker and tarpaulin printing services.
+In 2020, Ace Printing Services became Poxel Graphics and Apparels Printing Services.
+Despite the challenges faced during the Covid-19 pandemic, Poxel Graphics
+courageously fought and continued its operations.
+Now also offering custom apparel and sublimation printing services, Poxel Graphics is
+providing high-quality prints and products to its customers as well as acknowledging
+and showcasing the skills and talents of its employees.
+@endsection
+
+@section('meta-keyword', "Poxel graphics and printing services, about us, printing, products")
+
 @section('header-imports')
 <link rel="stylesheet" href="assets/css/members.css">
 @endsection

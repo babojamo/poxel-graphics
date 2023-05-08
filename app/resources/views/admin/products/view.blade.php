@@ -30,7 +30,10 @@
 <div class="container-fluid py-4">
     <div class="card">
         <div class="card-header pb-0 px-3">
-            <h6 class="mb-0">View Product Information</h6>
+            <h6 class="mb-0">View Product Information <a target="_blank" href="{{ $product->slug_route }}" class="mx-2"
+                    data-bs-toggle="tooltip" data-bs-original-title="View">
+                    <i class="fas fa-eye text-secondary"></i>
+                </a></h6>
         </div>
         <div class="card-body pt-4 p-3">
             <form action="{{ route('admin.products.update', $product->id) }}" method="POST" role="form text-left"

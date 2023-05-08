@@ -20,7 +20,7 @@
                                     <li class="menu-item-has-children @yield('menu-product')"><a href="{{ route('products') }}">Products & Services</a>
                                         <ul class="submenu">
                                             @foreach($service_menu as $menu)
-                                            <li><a href="{{ route('services.view', $menu->id) }}">{{ $menu->name }}</a></li>
+                                            <li><a href="{{ $menu->slug_route }}">{{ $menu->name }}</a></li>
                                             @endforeach
                                         </ul>
                                     </li>
