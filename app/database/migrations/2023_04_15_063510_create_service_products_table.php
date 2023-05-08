@@ -16,6 +16,7 @@ class CreateServiceProductsTable extends Migration
         Schema::create('service_products', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->text('slug')->nullable();
             $table->string('main_image_url');
             $table->string('secondary_image_url')->nullable();
             $table->boolean('featured')->default(false);

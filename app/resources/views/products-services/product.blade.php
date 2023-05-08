@@ -1,4 +1,8 @@
 @extends('layouts.app')
+
+@section('meta-description', "Poxel graphics and apparel printing services offers high a quality {$product->name} products.")
+@section('meta-keyword', "Poxel graphics and printing services, {$product->name}, printing, products")
+
 @section('title', $product->name)
 @section('header-imports')
 <link rel="stylesheet" href="{{ asset('assets/css/product-gallery.css') }}">
@@ -20,7 +24,7 @@
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="#">Services</a></li>
-                                <li class="breadcrumb-item"><a href="{{ route('services.view', $product->service_id) }}"
+                                <li class="breadcrumb-item"><a href="{{  $product->service->slug_route }}"
                                         class="active">{{ $product->service->name }}</a></li>
 
                                 <li class="breadcrumb-item active" aria-current="page">{{ $product->name }}</li>
@@ -55,7 +59,7 @@
                         <h2 class="title">{{ $product->name }}</h2>
                         <ul class="market-details-meta">
                             <li><a
-                                    href="{{ route('services.view', $product->service_id) }}">{{ $product->service->name }}</a>
+                                    href="{{ $product->service->slug_route }}">{{ $product->service->name }}</a>
                             </li>
                             <li class="wishlist">6 favorites</li>
                         </ul>

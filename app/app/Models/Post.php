@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Helpers\Slugger;
 
 class Post extends Model
 {
@@ -12,11 +13,11 @@ class Post extends Model
     protected static function booted()
     {
         static::created(function ($post) {
-            $post->slug = strtolower(preg_replace('/[^A-Za-z0-9-]+/', '-', $post->title));
+            $post->slug = Slugger::makeSlug($post->title);
             $post->saveQuietly();
         });
         static::updated(function ($post) {
-            $post->slug = strtolower(preg_replace('/[^A-Za-z0-9-]+/', '-', $post->title));
+            $post->slug = Slugger::makeSlug($post->title);
             $post->saveQuietly();
         });
     }
@@ -46,15 +47,19 @@ class Post extends Model
         return $this->hasMany(PostComment::class);
     }
 
+    public function getSlugRouteAttribute() {
+        return route('news.view', $this->slug);
+    }
+
     public function getNewsRouteAttribute() {
         return route('news.view', $this->slug);
     }
 
     public function getSharableLinksAttribute() {
         return (object)[
-            'facebook' => "https://www.facebook.com/sharer/sharer.php?u={$this->news_route}",
-            'linkedin' => "https://www.linkedin.com/shareArticle/?url={$this->news_route}",
-            'twitter' => "https://twitter.com/intent/tweet?text={$this->news_route}"
+            'facebook' => "https://www.facebook.com/sharer/sharer.php?u={$this->slug_route}",
+            'linkedin' => "https://www.linkedin.com/shareArticle/?url={$this->slug_route}",
+            'twitter' => "https://twitter.com/intent/tweet?text={$this->slug_route}"
         ];
     }
 }

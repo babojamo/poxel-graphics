@@ -80,8 +80,8 @@
                                         </div>
                                         <div class="rc-post-content">
                                             <ul class="standard-blog-meta">
-                                                <li><a href="{{ $recent_post->news_route }}"><i class="flaticon-avatar"></i>{{ $recent_post->user->name }}</a></li>
-                                                <li><a href="{{ $recent_post->news_route }}"><i class="flaticon-calendar"></i>{{ $recent_post->created_at->diffForHumans() }}</a></li>
+                                                <li><a href="{{ $recent_post->slug_route }}"><i class="flaticon-avatar"></i>{{ $recent_post->user->name }}</a></li>
+                                                <li><a href="{{ $recent_post->slug_route }}"><i class="flaticon-calendar"></i>{{ $recent_post->created_at->diffForHumans() }}</a></li>
                                             </ul>
                                             <h5 class="title"><a href="blog-details.html">{{ $recent_post->title }}</a></h5>
                                         </div>

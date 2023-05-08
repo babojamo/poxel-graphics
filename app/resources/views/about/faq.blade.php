@@ -2,6 +2,9 @@
 @section('menu-about', 'active')
 @section('title', 'Frequenly Asked Questions')
 
+@section('meta-description', 'Frequenly Asked Question (FAQ)')
+@section('meta-keyword', "Poxel graphics and printing services, Frequenly asked questions, printing, products")
+
 @section('header-imports')
 <link rel="stylesheet" href="assets/css/members.css">
 <style>

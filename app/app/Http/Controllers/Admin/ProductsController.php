@@ -42,22 +42,20 @@ class ProductsController extends Controller
         $attributes = request()->validate([
             'name' => ['required', 'max:50'],
             'service' => ['required'],
-            'main_image' => ['required'],
+            'main_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'featured' => ['nullable'],
             'content' => ['nullable'],
         ]);
-        
-        $path = $request->file('main_image')->store(
-            'products', 'public'
-        );
- 
+
         $product = ServiceProduct::create([
             'service_id' => $attributes['service'],
             'name' => $attributes['name'],
-            'main_image_url' => asset('storage/' . $path),
+            'main_image_url' => '',
             'featured' => isset($attributes['featured']) && $attributes['featured'] == 'on' ? true : false,
             'content' => $attributes['content'],
         ]);
+
+        $this->uploadFeaturedImage($product, $request);
 
         return redirect()->route('admin.products.view', $product->id);
     }
@@ -78,20 +76,13 @@ class ProductsController extends Controller
         $attributes = request()->validate([
             'name' => ['required', 'max:50'],
             'service' => ['required'],
-            'main_image' => ['nullable'],
+            'main_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'featured' => ['nullable'],
             'content' => ['nullable'],
             'images' => ['nullable'],
         ]);
 
         $product = ServiceProduct::findOrFail($id);
-        
-        if(isset($attributes['main_image'])) {
-            $path = $request->file('main_image')->store(
-                'products', 'public'
-            );
-            $product->main_image_url = Storage::disk('public')->url($path);
-        }
 
         $product->service_id = $attributes['service'];
         $product->name = $attributes['name'];
@@ -99,6 +90,8 @@ class ProductsController extends Controller
         $product->content = $attributes['content'];
         $product->images = $attributes['images'];
         $product->save();
+
+        $this->uploadFeaturedImage($product, $request);
 
         return redirect()->back()->with('success','Product updated successfully');
     }
@@ -109,6 +102,17 @@ class ProductsController extends Controller
         $product->delete();
         
         return redirect()->back()->with('success','Product deleted successfully');
+    }
+
+    public function uploadFeaturedImage(ServiceProduct $product, Request $request) {
+        if(isset($request->main_image)) {
+            $path = $request->file('main_image')->store(
+                "products/{$product->id}", 'public'
+            );
+            $product->main_image_url = Storage::disk('public')->url($path);
+            $product->save();
+        }
+        return $product;
     }
 
     public function uploadImage(Request $request, $id)

@@ -1,4 +1,10 @@
 @extends('layouts.app')
+
+@section('meta-description', "Transform your ideas into reality with Poxel Graphics and Apparel Printing Services. Get a
+                            free quote today and discover the possibilities of high-quality custom graphics and apparel
+                            printing. If you have questions feel free to contact us.")
+@section('meta-keyword', "Poxel graphics and printing services, quotation, printing, products")
+
 @section('title', 'Get A Quote')
 @section('header-imports')
 <style>

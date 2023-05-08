@@ -4,10 +4,24 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Helpers\Slugger;
 
 class ServiceProduct extends Model
 {
     use HasFactory;
+
+    protected static function booted()
+    {
+        static::created(function ($product) {
+            $product->slug = Slugger::makeSlug($product->name);
+            $product->saveQuietly();
+        });
+        static::updated(function ($product) {
+            $product->slug = Slugger::makeSlug($product->name);
+            $product->saveQuietly();
+        });
+    }
+
     protected $fillable = [
         'service_id',
         'name',
@@ -17,6 +31,10 @@ class ServiceProduct extends Model
         'content',
         'images',
     ];
+
+    public function getSlugRouteAttribute() {
+        return route('products.view', $this->slug);
+    }
 
     public function service() {
         return $this->belongsTo(Service::class);

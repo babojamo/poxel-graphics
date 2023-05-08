@@ -26,7 +26,8 @@ class ProductsServicesController extends Controller
         ]);
     }
     
-    public function view(ServiceProduct $product) {
+    public function view($slug) {
+        $product = ServiceProduct::where('slug', $slug)->firstOrFail();
         return view('products-services.product', [
             'product' => $product
         ]);
@@ -38,8 +39,8 @@ class ProductsServicesController extends Controller
         ]);
     }
 
-    public function serviceProducts($id) {
-        $service = PoxelService::findOrFail($id);
+    public function serviceProducts($slug) {
+        $service = PoxelService::where('slug', $slug)->firstOrFail();
         return view('products-services.service-products', [
             'service' => $service
         ]);

@@ -30,6 +30,8 @@ class NewsController extends Controller
             });
 
         $posts = $posts->get();
+        
+        $recent_posts = Post::orderBy('created_at', 'asc')->limit(3)->get();
 
         $categories = $this->category_repository->getCategories();
         
@@ -37,6 +39,7 @@ class NewsController extends Controller
             'posts' => $posts,
             'categories' => $categories,
             'search' => $search,
+            'recent_posts' => $recent_posts,
         ]);
     }
 

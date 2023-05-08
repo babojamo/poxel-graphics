@@ -111,12 +111,17 @@
                                     <form id="form-{{ $product->id }}"
                                         action="{{ route('admin.products.delete', $product->id) }}" method="post">
                                         @csrf
-                                        <a href="{{ route('admin.products.view', $product->id) }}" class="mx-3"
+                                        <a href="{{ route('admin.products.view', $product->id) }}" class="mx-2"
                                             data-bs-toggle="tooltip" data-bs-original-title="Edit">
                                             <i class="fas fa-pencil-alt text-secondary"></i>
                                         </a>
+                                        <a target="_blank" href="{{ $product->slug_route }}" class="mx-2"
+                                            data-bs-toggle="tooltip" data-bs-original-title="View">
+                                            <i class="fas fa-eye text-secondary"></i>
+                                        </a>
+
                                         @method('delete')
-                                        <a onclick="document.getElementById('form-{{ $product->id }}').submit();">
+                                        <a class="mx-2" onclick="document.getElementById('form-{{ $product->id }}').submit();">
                                             <i class="cursor-pointer fas fa-trash text-secondary"></i>
                                         </a>
                                     </form>

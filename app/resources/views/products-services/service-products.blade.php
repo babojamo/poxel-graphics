@@ -1,4 +1,10 @@
 @extends('layouts.app')
+
+@section('title', $service->name)
+
+@section('meta-description', "Poxel graphics and apparel printing services offers high a quality {$service->name} products.")
+@section('meta-keyword', "Poxel graphics and printing services, {$service->name}, printing, products")
+
 @section('header-imports')
 <link rel="stylesheet" href="{{ asset('assets/css/product-overlay.css') }}">
 @endsection
@@ -24,7 +30,7 @@
                         <div class="product-name">
                             <h2>{{ $product->name }}</h2>
                         </div>
-                        <a href="{{ route('products.view', $product->id) }}" class="btn-outline ml-auto" tabindex="0">View
+                        <a href="{{ $product->slug_route }}" class="btn-outline ml-auto" tabindex="0">View
                             Product</a>
                     </div>
                 </div>

@@ -99,12 +99,16 @@
                                     <form id="form-{{ $post->id }}"
                                         action="{{ route('admin.posts.delete', $post->id) }}" method="post">
                                         @csrf
-                                        <a href="{{ route('admin.posts.view', $post->id) }}" class="mx-3"
+                                        <a href="{{ route('admin.posts.view', $post->id) }}" class="mx-2"
                                             data-bs-toggle="tooltip" data-bs-original-title="Edit">
                                             <i class="fas fa-pencil-alt text-secondary"></i>
                                         </a>
+                                        <a target="_blank" href="{{ $post->slug_route }}" class="mx-2"
+                                            data-bs-toggle="tooltip" data-bs-original-title="View">
+                                            <i class="fas fa-eye text-secondary"></i>
+                                        </a>
                                         @method('delete')
-                                        <a onclick="document.getElementById('form-{{ $post->id }}').submit();">
+                                        <a class="mx-2" onclick="document.getElementById('form-{{ $post->id }}').submit();">
                                             <i class="cursor-pointer fas fa-trash text-secondary"></i>
                                         </a>
                                     </form>

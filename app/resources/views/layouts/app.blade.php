@@ -3,9 +3,16 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>@yield('title', 'Home') | Poxel Graphics and Apparels</title>
-        <meta name="description" content="">
+        <title>
+            @hasSection('title')
+            @yield('title') | 
+            @endif
+            Poxel Graphics and Apparels Printing Services
+        </title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <meta name="description" content="@yield('meta-description', 'Offers quality and affordable Digital Printing, Dye Sublimation and Outdoor Signage.')">
+        <meta name="keywords" content="@yield('meta-keywords', 'poxel graphics, poxel, apparel-and-printing, poxel digital printing')">
 
         <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/favicon.png') }}">
         <!-- Place favicon.ico in the root directory -->
@@ -89,7 +96,7 @@
                                     <ul class="fw-links">
                                         <li><a href="{{ route('about.partners') }}">Loyal Customers</a></li>
                                         <li><a href="{{ route('about.contact') }}">Contact Us</a></li>
-                                        <li><a href="#">News & Events</a></li>
+                                        <li><a href="{{ route('news') }}">News & Events</a></li>
                                     </ul>
                                 </div>
                             </div>
