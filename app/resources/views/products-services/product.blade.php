@@ -1,8 +1,5 @@
 @extends('layouts.app')
 
-@section('meta-description', "Poxel graphics and apparel printing services offers high a quality {$product->name} products.")
-@section('meta-keyword', "Poxel graphics and printing services, {$product->name}, printing, products")
-
 @section('title', $product->name)
 @section('header-imports')
 <link rel="stylesheet" href="{{ asset('assets/css/product-gallery.css') }}">
@@ -11,6 +8,23 @@
         obj.style.height = (obj.contentWindow.document.documentElement.scrollHeight + 20) + 'px';
     }
 </script>
+@endsection
+
+
+@section('meta-description', "Poxel graphics and apparel printing services offers high a quality {$product->name} products.")
+@section('meta-keyword', "Poxel graphics and printing services, {$product->name}, printing, products")
+
+@section('meta-og-type', 'products')
+@section('meta-og-image', $product->main_image_url)
+@section('meta-article')
+    <meta property="article:section" content="{{ $product->service->name }}">
+    <meta property="article:tag" content="products">
+    <meta property="article:tag" content="{{ $product->service->name }}">
+    <meta property="article:tag" content="{{ $product->name }}">
+    <meta property="article:published_time" content="{{ $product->created_at }}">
+    <meta property="article:modified_time" content="{{ $product->updated_at }}">
+    <meta property="article:publisher" content="https://www.facebook.com/Poxelgraphicsandapparel">
+    <meta property="article:author" content="https://www.facebook.com/Poxelgraphicsandapparel">
 @endsection
 
 @section('content')

@@ -1,9 +1,5 @@
 @extends('layouts.app')
 @section('menu-news', 'active')
-
-@section('meta-description', $post->title)
-@section('meta-keyword', "Poxel graphics and printing services, {$post->title}, printing, products")
-
 @section('title', $post->title)
 @section('header-imports')
 <script>
@@ -12,6 +8,26 @@
     }
 </script>
 @endsection
+
+@section('meta-description', $post->content)
+@section('meta-keyword', "Poxel graphics and printing services, {$post->title}, printing, products")
+@section('meta-og-type', 'article')
+@section('meta-og-image', $post->featured_image_url)
+@section('meta-article')
+    @foreach($post->categories as $category)
+    <meta property="article:section" content="{{ $category }}">
+    @endforeach
+
+    @foreach($post->tags as $tag)
+    <meta property="article:tag" content="{{ $tag }}">
+    @endforeach
+
+    <meta property="article:published_time" content="{{ $post->created_at }}">
+    <meta property="article:modified_time" content="{{ $post->updated_at }}">
+    <meta property="article:publisher" content="https://www.facebook.com/Poxelgraphicsandapparel">
+    <meta property="article:author" content="https://www.facebook.com/Poxelgraphicsandapparel">
+@endsection
+
 @section('content')
 
 <!-- blog-details-area -->
