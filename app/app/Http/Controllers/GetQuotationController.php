@@ -95,11 +95,14 @@ class GetQuotationController extends Controller
             'service' => 'required',
             'order_type' => 'required',
             'quantity' => 'required',
+            'size' => 'nullable',
             'printing_type' => 'required_if:service,sublimation',
             'fabric' => 'required_if:service,sublimation',
             'collar_type' => 'required_if:service,sublimation',
             'sticker_type' => 'required_if:service,others',
             'reference' => 'file|nullable',
+            'deadline' => 'nullable',
+            'remarks' => 'nullable',
         ]);
         
         Mail::to(config('app.poxel.quotation_receiver'))->send(new GetQuotation($request));

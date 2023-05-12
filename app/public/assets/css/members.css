@@ -111,7 +111,7 @@ h2 {
 }
 
 h3 {
-    background: linear-gradient(182deg, #fff0 60%, var(--dark) 0 100%);
+    background: linear-gradient(182deg, #fff0 10%, var(--dark) 0 100%);
     display: inline;
     transform: rotate(-2deg);
     position: absolute;
@@ -130,13 +130,13 @@ h3 {
     right: 9vmin;
     transform: rotate(2deg);
     transform-origin: right bottom;
-    background: linear-gradient(-182deg, #fff0 60%, var(--dark) 0 100%);
+    background: linear-gradient(-182deg, #fff0 10%, var(--dark) 0 100%);
 }
 
 .member:hover h3 {
     transition: var(--trans);
     transform: rotate(0deg);
-    background: linear-gradient(180deg, #fff0 59%, var(--dark) 0 100%);
+    background: linear-gradient(180deg, #fff0 19%, var(--dark) 0 100%);
 }
 
 .co-funder:after {
@@ -194,6 +194,36 @@ h3 {
     font-weight: bold;
 }
 
+@media only screen and (max-width:576px) {
+    /* .co-founder:after {
+        right: 1rem !important;
+    }
+    .hr-manager::after {
+        right: inherit !important;
+    }
+    .founder:after {
+        top:2rem !important;
+    }  */
+
+    .quality-control-staff:after {
+        top:2rem !important;
+    } 
+
+    .senior-graphic-artist:after {
+        top:2rem !important;
+    }
+
+    .sales-supervisor:after {
+        top:1.5rem !important;
+
+    }
+
+    .member p {
+        margin-top: 2.5rem !important;
+    }
+}
+
+
 .operations-manager:after {
     content: "OPERATIONS MANAGER" !important;
 }
@@ -233,6 +263,7 @@ h3 {
 .quality-control-staff:after {
     content: "QUALITY CONTROL STAFF(S)" !important;
 }
+
 
 .founder:nth-of-type(even):after {
     right: inherit;

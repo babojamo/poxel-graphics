@@ -20,7 +20,7 @@
         </div>
         <div class="row gap-2 justify-content-center">
             @foreach($service->products as $product)
-            <div class="col-3">
+            <div class="col-xl-3 col-md-4 col-sm-12">
                 <div class="product-listing">
                     <div class="main-image">
                         <span class="category">{{ $service->name }}</span>

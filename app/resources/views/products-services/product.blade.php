@@ -67,17 +67,32 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6">
-                <div class="market-single-top">
-                    <div class="market-single-title-wrap">
-                        <h2 class="title">{{ $product->name }}</h2>
-                        <ul class="market-details-meta">
-                            <li><a
-                                    href="{{ $product->service->slug_route }}">{{ $product->service->name }}</a>
-                            </li>
-                            <li class="wishlist">6 favorites</li>
-                        </ul>
+
+            <div class="col-lg-6 mt-5 mt-sm-0 mt-md-0 mt-lg-0">
+                <div class="d-flex">
+
+                    <div class="market-single-top">
+                        <div class="market-single-title-wrap">
+                            <h2 class="title">{{ $product->name }}</h2>
+                            <ul class="market-details-meta">
+                                <li><a href="{{ $product->service->slug_route }}">{{ $product->service->name }}</a>
+                                </li>
+                            </ul>
+                        </div>
+
                     </div>
+
+                    <div class="ms-auto">
+                        <div class="d-flex gap-2 align-items-center blog-details-social">
+                            <p class="mb-0"><i class="fas fa-share-alt"></i> Share</p>
+                            <ul class="mt-0">
+                                <li><a target="popup" onclick="window.open(`{{ $product->sharable_links->facebook }}`,'name','width=600,height=400')" href="{{ $product->sharable_links->facebook }}"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a target="popup" onclick="window.open(`{{ $product->sharable_links->twitter }}`,'name','width=600,height=400')" href="{{ $product->sharable_links->twitter }}"><i class="fab fa-twitter"></i></a></li>
+                                <li><a target="popup" onclick="window.open(`{{ $product->sharable_links->linkedin }}`,'name','width=600,height=400')" href="{{ $product->sharable_links->linkedin }}"><i class="fab fa-linkedin-in"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+
                 </div>
 
                 <div style="color: white !important;" class="market-single-content">

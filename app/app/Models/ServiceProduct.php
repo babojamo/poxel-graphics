@@ -47,4 +47,12 @@ class ServiceProduct extends Model
     public function getImageGalleryAttribute() {
         return array_merge([$this->main_image_url], $this->image_highlights);
     }
+
+    public function getSharableLinksAttribute() {
+        return (object)[
+            'facebook' => "https://www.facebook.com/sharer/sharer.php?u={$this->slug_route}",
+            'linkedin' => "https://www.linkedin.com/shareArticle/?url={$this->slug_route}",
+            'twitter' => "https://twitter.com/intent/tweet?text={$this->slug_route}"
+        ];
+    }
 }

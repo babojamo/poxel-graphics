@@ -30,12 +30,16 @@ class GetQuotation extends Mailable
      */
     public function build()
     {
-        $reference = $this->request->reference;
+        $references = $this->request->references;
 
-        if($reference)
-            $this->attachData($reference->get(), "reference-design.{$reference->extension()}", [
-                'mime' => $reference->getMimeType(),
-            ]);
+        if(!empty($references)) {
+            foreach ($references as $reference) {
+                $filename = $reference->getClientOriginalName();
+                $this->attachData($reference->get(), "$filename", [
+                    'mime' => $reference->getMimeType(),
+                ]);
+            }
+        }
 
         return $this->from('no-reply@poxelgraphics.ph', config('app.name'))
             ->markdown('emails.get-quotation');

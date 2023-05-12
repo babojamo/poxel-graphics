@@ -16,6 +16,14 @@ and showcasing the skills and talents of its employees.
 
 @section('header-imports')
 <link rel="stylesheet" href="assets/css/members.css">
+
+<style>
+   @media (max-width: 767.98px) {
+    .blog-details-content blockquote {
+        display: block !important;
+    }
+   }
+</style>
 @endsection
 
 @section('content')
@@ -27,12 +35,12 @@ and showcasing the skills and talents of its employees.
                     <div class="col-12">
                         <h2 class="title poxel-title text-center mb-30">Who we are?</h2>
                         <div class="row align-items-center">
-                            <div class="col-3">
+                            <div class="col-xl-3 col-md-4 col-sm-12">
                                 <img src="{{ asset('assets/img/logo/poxel_logo.png') }}" alt="">
                                 <img src="{{ asset('assets/img/logo/poxel_apparels.png') }}" alt="">
 
                             </div>
-                            <div class="col-8">
+                            <div class="col-xl-8 col-sm-12">
                                 <p>Established in 2017, Poxel Graphics and Apparels Printing Services started as Ace
                                     Printing Services. Providing customers with sticker and tarpaulin printing services.
                                 </p>
@@ -71,8 +79,8 @@ and showcasing the skills and talents of its employees.
                         <h2 class="title poxel-title text-center mb-30" id="mission">Our Mission</h2>
                         <div class="row align-items-center">
                             <div class="col-3 text-center">
-                                <img style="max-width: 10rem;" src="{{ asset('assets/img/others/bullseye.png') }}"
-                                    alt="">
+                                <img class="img img-responsive" width="200" src="{{ asset('assets/img/others/bullseye.png') }}"
+                                    alt="Our mission">
                             </div>
                             <div class="col-8">
                                 <p>
@@ -90,7 +98,7 @@ and showcasing the skills and talents of its employees.
 
                         <div class="row align-items-center">
                             <div class="col-3 text-center">
-                                <img style="max-width: 10rem;" src="{{ asset('assets/img/others/vision.png') }}" alt="">
+                                <img  class="img img-responsive" width="200"  src="{{ asset('assets/img/others/vision.png') }}" alt="Our vision">
                             </div>
                             <div class="col-8">
                                 <p>Our vision is to be the top and leading provider of custom apparel, signages, and other printing services by empowering creative designs and high-quality products. Thus, building a long-lasting relationship and partnership with the customers through comfort and satisfaction.</p>
@@ -101,7 +109,7 @@ and showcasing the skills and talents of its employees.
                 <div class="row mt-50 mb-90">
                     <div class="col-12">
                         <h2 class="title poxel-title text-center mb-20" id="team">Meet the Management and the Team</h2>
-                        <div class="content">
+                        <div style="width: 100% !important;" class="content">
                             <ul class="team">
                                 <li class="member founder">
                                     <div class="thumb"><img
