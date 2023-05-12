@@ -40,7 +40,7 @@ At Poxel Graphics and Apparel Services, we strive to provide the highest level o
                     <div class="col-12">
 
                         <div class="row">
-                            <div class="col-4">
+                            <div class="col-xl-4 col-md-4 col-sm-12">
                                 <h4 id="talk-to-us" class="mb-40 text-center">Talk to us</h4>
                                 <div class="d-flex justify-content-center">
                                     <ul>
@@ -78,7 +78,7 @@ At Poxel Graphics and Apparel Services, we strive to provide the highest level o
                                     </ul>
                                 </div>
                             </div>
-                            <div class="col-4 text-center">
+                            <div class="col-xl-4 col-md-4 col-sm-12 text-center">
                                 <h4 class="mb-40">Social Media</h4>
                                 <div class="mb-30">
                                     <a target="_blank" href="https://www.facebook.com/Poxelgraphicsandapparel">
@@ -89,7 +89,7 @@ At Poxel Graphics and Apparel Services, we strive to provide the highest level o
                                 <p>Just send us your questions by connecting and following us with our social media
                                     account.</p>
                             </div>
-                            <div class="col-4 text-center">
+                            <div class="col-xl-4 col-md-4 col-sm-12 text-center">
                                 <h4 class="mb-40">Ask for Quotation</h4>
                                 <a href="http://localhost:8000/quotation" href="#" class="btn">Get a
                                     Quote</a>

@@ -55,7 +55,7 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-grp">
-                            <label for="name">Name</label>
+                            <label for="name">Name <span class="text-danger">*</span></label>
                             <input value="{{ old('name') }}" class="form-control @error('name') is-invalid @enderror"
                                 id="name" name="name" type="text" placeholder="Name">
                             @error('name')
@@ -65,7 +65,7 @@
                     </div>
                     <div class="col-sm-6">
                         <div class="form-grp">
-                            <label for="company">Company</label>
+                            <label for="company">Company <span class="text-danger">*</span></label>
                             <input value="{{ old('company') }}"
                                 class="form-control @error('company') is-invalid @enderror" id="company" name="company"
                                 type="text" placeholder="Company">
@@ -78,7 +78,7 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-grp">
-                            <label for="contact">Contact Number</label>
+                            <label for="contact">Contact Number <span class="text-danger">*</span></label>
                             <input value="{{ old('contact') }}"
                                 class="form-control @error('contact') is-invalid @enderror" id="contact" name="contact"
                                 type="text" placeholder="Contact number">
@@ -89,7 +89,7 @@
                     </div>
                     <div class="col-sm-6">
                         <div class="form-grp">
-                            <label for="email-address">Email Address</label>
+                            <label for="email-address">Email Address <span class="text-danger">*</span></label>
                             <input value="{{ old('email_address') }}"
                                 class="form-control @error('email_address') is-invalid @enderror" id="email-address"
                                 name="email_address" type="text" placeholder="Email address">
@@ -102,7 +102,7 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-grp">
-                            <label for="order-type">Order Type</label>
+                            <label for="order-type">Order Type <span class="text-danger">*</span></label>
                             <select class="form-control @error('order_type') is-invalid @enderror" name="order_type"
                                 id="order-type">
                                 <option value="">Select</option>
@@ -131,7 +131,7 @@
                     @if($others)
                     <div class="col-sm-6">
                         <div class="form-grp">
-                            <label for="sticker-type">Sticker Type (for sticker only)</label>
+                            <label for="sticker-type">Sticker Type (for sticker only) <span class="text-danger">*</span></label>
                             <select class="form-control @error('sticker_type') is-invalid @enderror" name="sticker_type"
                                 id="sticker-type">
                                 <option value="">Select</option>
@@ -150,7 +150,7 @@
                     @else
                     <div class="col-sm-6">
                         <div class="form-grp">
-                            <label for="printing-type">Printing Type</label>
+                            <label for="printing-type">Printing Type <span class="text-danger">*</span></label>
                             <select class="form-control @error('printing_type') is-invalid @enderror"
                                 name="printing_type" id="printing-type">
                                 <option value="">Select</option>
@@ -172,7 +172,7 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-grp">
-                            <label for="fabric">Fabric</label>
+                            <label for="fabric">Fabric <span class="text-danger">*</span></label>
                             <select class="form-control @error('fabric') is-invalid @enderror" name="fabric"
                                 id="fabric">
                                 <option value="">Select</option>
@@ -189,7 +189,7 @@
                     <div class="col-sm-6">
 
                         <div class="form-grp">
-                            <label for="colar-type">Collar Type</label>
+                            <label for="colar-type">Collar Type <span class="text-danger">*</span></label>
                             <select class="form-control @error('collar_type') is-invalid @enderror" name="collar_type"
                                 id="colar-type">
                                 <option value="">Select</option>
@@ -207,7 +207,7 @@
                 @endif
 
                 <div class="form-grp">
-                    <label for="quantity">Quantity</label>
+                    <label for="quantity">Quantity <span class="text-danger">*</span></label>
                     <input value="{{ old('quantity') }}" class="form-control @error('quantity') is-invalid @enderror" id="quantity" type="text"
                         name="quantity" placeholder="Quantity">
                     @error('quantity')
@@ -233,9 +233,9 @@
                     @enderror
                 </div>
                 <div class="form-grp">
-                    <label for="reference">Reference Design</label>
-                    <input id="reference" name="reference" type="file">
-                    @error('reference')
+                    <label for="references">Reference Design</label>
+                    <input id="references" name="references[]" type="file" accept="image/png, image/gif, image/jpeg, zip, application/octet-stream, application/zip, application/x-zip, application/x-zip-compressed" multiple>
+                    @error('references')
                     <p class="invalid-feedback">{{ $message }}</p>
                     @enderror
                 </div>

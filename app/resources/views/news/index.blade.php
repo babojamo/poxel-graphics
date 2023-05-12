@@ -8,6 +8,12 @@
     }
 </script>
 @endsection
+
+
+@section('meta-description', 'Poxel graphics and printing services latest news & events')
+@section('meta-keyword', "Poxel graphics and printing services, news & events")
+@section('meta-og-type', 'articles')
+
 @section('content')
 <section class="blog-area pt-180 pb-80">
     <div class="container">

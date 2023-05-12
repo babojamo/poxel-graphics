@@ -12,6 +12,11 @@
         width: unset !important;
         flex: unset !important;
     }
+    @media (max-width: 767.98px) {
+        .blog-details-content blockquote {
+            display: block !important;
+        }
+   }
 </style>
 @endsection
 @section('content')

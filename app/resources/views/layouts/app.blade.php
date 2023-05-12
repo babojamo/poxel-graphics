@@ -14,6 +14,25 @@
         <meta name="description" content="@yield('meta-description', 'Offers quality and affordable Digital Printing, Dye Sublimation and Outdoor Signage.')">
         <meta name="keywords" content="@yield('meta-keywords', 'poxel graphics, poxel, apparel-and-printing, poxel digital printing')">
 
+
+        <meta property="og:site_name" content="Poxel Graphics and Apparels Printing Services">
+
+        @hasSection('meta-og-type')
+        <meta property="og:type" content="@yield('meta-og-type')">
+        @endif
+        
+        <meta property="og:description" content="@yield('meta-description', 'Offers quality and affordable Digital Printing, Dye Sublimation and Outdoor Signage.')">
+        <meta property="og:title" content="@yield('title') Poxel Graphics and Apparels Printing Services">
+        <meta property="og:url" content="{{ url()->full() }}">
+
+        @hasSection('meta-og-image')
+        <meta property="og:image" content="@yield('meta-og-image')">
+        <meta property="og:image:secure_url" content="@yield('meta-og-image')">
+        <meta property="og:image:width" content="550">
+        <meta property="og:image:height" content="340">
+        @endif
+
+        @yield('meta-article')
         <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/favicon.png') }}">
         <!-- Place favicon.ico in the root directory -->
 

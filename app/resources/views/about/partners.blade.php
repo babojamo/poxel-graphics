@@ -16,7 +16,7 @@
 
                 <div class="row gap-2 justify-content-center p-5" >
                     @foreach($customers as $customer)
-                    <div class="col-2 mb-5 d-flex align-items-center" style="background: white; min-height: 13rem;">
+                    <div class="col-xl-2 col-md-3 col-sm-6 mb-5 d-flex align-items-center justify-content-center" style="background: white; min-height: 13rem;">
                     <div>
                     <img style="width:95%" src="{{ $customer }}" alt="{{ $customer }}">
 
