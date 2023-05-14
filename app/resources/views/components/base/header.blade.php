@@ -54,15 +54,21 @@
                             <div class="menu-outer">
                                 <!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-->
                             </div>
-                            <div class="social-links">
-                                <ul class="clearfix">
-                                    <li><a href="#"><span class="fab fa-twitter"></span></a></li>
-                                    <li><a href="#"><span class="fab fa-facebook-f"></span></a></li>
-                                    <li><a href="#"><span class="fab fa-pinterest-p"></span></a></li>
-                                    <li><a href="#"><span class="fab fa-instagram"></span></a></li>
-                                    <li><a href="#"><span class="fab fa-youtube"></span></a></li>
+                            <div class="header-action mt-4">
+                                <ul class="justify-content-center">
+                                    <li class="header-btn"><a href="{{ route('quotation') }}" class="btn">Get a
+                                            Quote</a>
+                                    </li>
                                 </ul>
                             </div>
+                            <div class="social-links">
+                                <ul class="clearfix">
+                                    <li><a href="https://www.facebook.com/Poxelgraphicsandapparel"><span class="fab fa-facebook-f"></span></a></li>
+                                </ul>
+                            </div>
+
+                           
+
                         </nav>
                     </div>
                     <div class="menu-backdrop"></div>

@@ -14,7 +14,7 @@ use App\Http\Controllers\Admin\ResetController;
 use App\Http\Controllers\Admin\ChangePasswordController;
 use App\Http\Controllers\Admin\ProductsController as AdminProductsController;
 use App\Http\Controllers\Admin\PostsController;
-
+use App\Http\Controllers\Admin\PublicUploadController;
 
 /*
 |--------------------------------------------------------------------------
@@ -81,6 +81,9 @@ Route::name('about')->group(function() {
 });
 
 Route::name('admin')->middleware('auth')->prefix('admin')->group(function () {
+
+    Route::post('tinymce', [PublicUploadController::class, 'tinymce'])->name('.upload.tinymce');
+
     Route::name('.products')->prefix('products')->group(function () {
         Route::get('', [AdminProductsController::class, 'index']);
         Route::get('create', [AdminProductsController::class, 'create'])->name('.create');
