@@ -2,32 +2,7 @@
 
 @section('header-imports')
 <link rel="stylesheet" href="{{ asset('assets/tagsinput/src/bootstrap-tagsinput.css') }}">
-<script src="{{ asset('tinymce/tinymce.min.js') }}" referrerpolicy="origin"></script>
-<script>
-    tinymce.init({
-        selector: '#content',
-        plugins: 'preview importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media codesample table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount help charmap quickbars emoticons',
-        menubar: 'file edit view insert format tools table help',
-        toolbar: 'undo redo | bold italic underline strikethrough | formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | pagebreak | charmap emoticons | fullscreen  preview save | insertfile image media link anchor codesample | ltr rtl',
-        toolbar_sticky: true,
-        autosave_ask_before_unload: true,
-        autosave_interval: '30s',
-        autosave_prefix: '{path}{query}-{id}-',
-        autosave_restore_when_empty: false,
-        autosave_retention: '2m',
-        image_advtab: true,
-
-        importcss_append: true,
-
-
-        height: 600,
-        image_caption: true,
-        quickbars_selection_toolbar: 'bold italic | quicklink h2 h3 blockquote quickimage quicktable',
-
-        toolbar_mode: 'sliding',
-        contextmenu: 'link image table',
-    });
-</script>
+<x-head.tinymce-config selector="content"/>
 @endsection
 
 @section('content')
@@ -134,8 +109,7 @@
                 <div class="form-group">
                     <label for="content">Content</label>
                     <div class="@error('content')border border-danger rounded-3 @enderror">
-                        <textarea class="form-control" id="content" rows="3" placeholder="Content"
-                            name="content">{{ old('content') }}</textarea>
+                        <x-forms.tinymce-editor id="content" name="content" placeholder="Content">{{ old('content') }}</x-forms.tinymce-editor>
                     </div>
                 </div>
                 <div class="d-flex justify-content-end">

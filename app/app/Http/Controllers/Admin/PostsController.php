@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
-use Illuminate\Support\Facades\Storage;
 
 class PostsController extends Controller
 {
@@ -68,8 +67,8 @@ class PostsController extends Controller
     {
         $attributes = request()->validate([
             'title' => ['required', 'max:500'],
-            'main_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048|dimensions:max_width=922,max_height=518',
-            'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048|dimensions:max_width=403,max_height=518',
+            'main_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048|dimensions:max_width=922',
+            'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048|dimensions:max_width=403',
             'content' => ['nullable'],
             'categories' => ['nullable'],
             'tags' => ['nullable'],
@@ -119,4 +118,6 @@ class PostsController extends Controller
         }
         return $post;
     }
+
+ 
 }
