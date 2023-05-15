@@ -37,7 +37,7 @@
             <div class="col-xxl-9 col-lg-8">
                 <div class="standard-blog-item blog-details-content mx-0">
                     <div class="blog-thumb">
-                        <img src="{{ $post->featured_image_url }}" alt="{{ $post->title }}">
+                        <img class="w-100" src="{{ $post->featured_image_url }}" alt="{{ $post->title }}">
                     </div>
                     <div class="standard-blog-content">
                         <ul class="standard-blog-meta">

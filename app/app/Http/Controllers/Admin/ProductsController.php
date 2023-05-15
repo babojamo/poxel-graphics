@@ -42,7 +42,7 @@ class ProductsController extends Controller
         $attributes = request()->validate([
             'name' => ['required', 'max:50'],
             'service' => ['required'],
-            'main_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'main_image' => 'nullable|base64',
             'featured' => ['nullable'],
             'content' => ['nullable'],
         ]);
@@ -76,7 +76,7 @@ class ProductsController extends Controller
         $attributes = request()->validate([
             'name' => ['required', 'max:50'],
             'service' => ['required'],
-            'main_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'main_image' => 'nullable|base64',
             'featured' => ['nullable'],
             'content' => ['nullable'],
             'images' => ['nullable'],
@@ -106,12 +106,13 @@ class ProductsController extends Controller
 
     public function uploadFeaturedImage(ServiceProduct $product, Request $request) {
         if(isset($request->main_image)) {
-            $path = $request->file('main_image')->store(
-                "products/{$product->id}", 'public'
-            );
-            $product->main_image_url = Storage::disk('public')->url($path);
-            $product->save();
+            $path = "product/{$product->id}/featured-image.png";
+            if(Storage::disk('public')->put($path, base64_decode($request->main_image))) {
+                $product->main_image_url = Storage::disk('public')->url($path);
+                $product->save();
+            }
         }
+
         return $product;
     }
 

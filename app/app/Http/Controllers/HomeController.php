@@ -15,7 +15,8 @@ class HomeController extends Controller
         $featured_service_products = ServiceProduct::where('featured', true)
             ->orderBy('service_id')
             ->get();
-        $posts = Post::orderBy('created_at', 'asc')->limit(3)->get();
+
+        $posts = Post::orderBy('updated_at', 'desc')->limit(3)->get();
 
         return view('welcome', [
             'services' => $services,

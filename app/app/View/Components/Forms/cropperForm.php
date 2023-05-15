@@ -1,21 +1,19 @@
 <?php
 
-namespace App\View\Components\Head;
+namespace App\View\Components\Forms;
 
 use Illuminate\View\Component;
 
-class tinymceConfig extends Component
+class cropperForm extends Component
 {
-    public $selector;
-
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($selector = 'tinymceEditor')
+    public function __construct()
     {
-        $this->selector = $selector;
+        //
     }
 
     /**
@@ -25,8 +23,6 @@ class tinymceConfig extends Component
      */
     public function render()
     {
-        return view('components.head.tinymce-config', [
-            'selector' => $this->selector,
-        ]);
+        return view('components.forms.cropper-form');
     }
 }

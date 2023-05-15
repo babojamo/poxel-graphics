@@ -5,8 +5,7 @@
         var token = '{{ csrf_token() }}';
 
         xhr.withCredentials = false;
-        xhr.open('POST', '{{ $uploadUrl ?? '
-            ' }}');
+        xhr.open('POST', '{{ route('admin.upload.tinymce') }}');
         xhr.setRequestHeader("X-CSRF-Token", token);
 
         xhr.upload.onprogress = (e) => {
@@ -54,6 +53,7 @@
         toolbar: 'undo redo | bold italic underline strikethrough | formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | pagebreak | charmap emoticons | fullscreen  preview save | insertfile image media link anchor codesample | ltr rtl',
         toolbar_sticky: true,
         autosave_ask_before_unload: true,
+        image_advtab: true,
         autosave_interval: '30s',
         autosave_prefix: '{path}{query}-{id}-',
         autosave_restore_when_empty: false,
