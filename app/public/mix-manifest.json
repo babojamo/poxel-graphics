@@ -153,5 +153,11 @@
     "/js/tinymce/themes/silver/theme.min.js": "/js/tinymce/themes/silver/theme.min.js",
     "/js/tinymce/tinymce.d.ts": "/js/tinymce/tinymce.d.ts",
     "/js/tinymce/tinymce.js": "/js/tinymce/tinymce.js",
-    "/js/tinymce/tinymce.min.js": "/js/tinymce/tinymce.min.js"
+    "/js/tinymce/tinymce.min.js": "/js/tinymce/tinymce.min.js",
+    "/js/cropperjs/cropper.common.js": "/js/cropperjs/cropper.common.js",
+    "/js/cropperjs/cropper.css": "/js/cropperjs/cropper.css",
+    "/js/cropperjs/cropper.esm.js": "/js/cropperjs/cropper.esm.js",
+    "/js/cropperjs/cropper.js": "/js/cropperjs/cropper.js",
+    "/js/cropperjs/cropper.min.css": "/js/cropperjs/cropper.min.css",
+    "/js/cropperjs/cropper.min.js": "/js/cropperjs/cropper.min.js"
 }

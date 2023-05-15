@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
+use Illuminate\Support\Facades\Storage;
 
 class PostsController extends Controller
 {
@@ -34,8 +35,8 @@ class PostsController extends Controller
     {
         $attributes = request()->validate([
             'title' => ['required', 'max:500'],
-            'main_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048|dimensions:max_width=922,max_height=518',
-            'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048|dimensions:max_width=403,max_height=518',
+            'main_image' => 'nullable|base64',
+            'thumbnail_image' => 'nullable|base64',
             'categories' => ['nullable'],
             'tags' => ['nullable'],
             'content' => ['nullable'],
@@ -67,8 +68,8 @@ class PostsController extends Controller
     {
         $attributes = request()->validate([
             'title' => ['required', 'max:500'],
-            'main_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048|dimensions:max_width=922',
-            'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048|dimensions:max_width=403',
+            'main_image' => 'nullable|base64',
+            'thumbnail_image' => 'nullable|base64',
             'content' => ['nullable'],
             'categories' => ['nullable'],
             'tags' => ['nullable'],
@@ -98,23 +99,25 @@ class PostsController extends Controller
 
     public function uploadFeaturedImage(Post $post, Request $request) {
         if(isset($request->main_image)) {
-            $path = $request->file('main_image')->store(
-                "posts/{$post->id}", 'public'
-            );
-            $post->featured_image_url = Storage::disk('public')->url($path);
-            $post->save();
+            $path = "posts/{$post->id}/featured-image.png";
+            if(Storage::disk('public')->put($path, base64_decode($request->main_image))) {
+                $post->featured_image_url = Storage::disk('public')->url($path);
+                $post->save();
+            }
         }
         return $post;
     }
 
 
     public function uploadThumbnailImage(Post $post, Request $request) {
-        if(isset($request->thumbnail)) {
-            $path = $request->file('thumbnail')->store(
-                "posts/{$post->id}/thumbnail", 'public'
-            );
-            $post->thumbnail_image_url = Storage::disk('public')->url($path);
-            $post->save();
+
+        if(isset($request->thumbnail_image)) {
+            $path = "posts/{$post->id}/thumbnail-image.png";
+            if(Storage::disk('public')->put($path, base64_decode($request->thumbnail_image))) {
+                $post->thumbnail_image_url = Storage::disk('public')->url($path);
+                $post->save();
+            }
+          
         }
         return $post;
     }

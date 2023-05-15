@@ -164,7 +164,7 @@ and showcasing the skills and talents of its employees.
                                     </div>
                                     <div class="description">
                                         <h3>Christine Amparo</h3>
-                                        <p>"Everything is worth what its purchaser will pay for it." - Publilius Syrus/p>
+                                        <p>"Everything is worth what its purchaser will pay for it." - Publilius Syrus</p>
                                     </div>
                                 </li>
 
@@ -207,7 +207,7 @@ and showcasing the skills and talents of its employees.
                                     </div>
                                     <div class="description">
                                         <h3>Dhan Josef Arellano & 5 junior graphic artists</h3>
-                                        <p>"Design creates culture. Culture shapes values. Values determine the future." - Robert L. Peters/p>
+                                        <p>"Design creates culture. Culture shapes values. Values determine the future." - Robert L. Peters</p>
                                     </div>
                                 </li>
                                 <li class="member co-founder quality-control-staff">

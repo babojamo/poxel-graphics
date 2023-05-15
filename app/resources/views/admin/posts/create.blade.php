@@ -2,6 +2,7 @@
 
 @section('header-imports')
 <link rel="stylesheet" href="{{ asset('assets/tagsinput/src/bootstrap-tagsinput.css') }}">
+<link rel="stylesheet" href="{{ asset('js/cropperjs/cropper.min.css') }}">
 <x-head.tinymce-config selector="content"/>
 @endsection
 
@@ -78,27 +79,14 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <div class="form-group">
                             <label for="feature-image" class="form-control-label">Feature Image</label>
                             <div class="@error('main_image')border border-danger rounded-3 @enderror">
-                                <input class="form-control" type="file" placeholder="Image" id="feature-imange"
-                                    name="main_image">
-                                <p class="text-primary text-xs mt-2">Featured image must be 922 x 518 Dimension</p>
+                                <input class="form-control main-image" type="file" placeholder="Image" id="feature-imange" />
+                                    <input id="cropped-main-image" type="hidden" name="main_image"/>
+                                <input id="cropped-thumb-image" type="hidden" name="thumbnail_image"/>
                                 @error('main_image')
-                                <p class="text-danger text-xs mt-2">{{ $message }}</p>
-                                @enderror
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="thumbnail-image" class="form-control-label">Thumbnail</label>
-                            <div class="@error('thumbnail')border border-danger rounded-3 @enderror">
-                                <input class="form-control" type="file" placeholder="Image" id="thumbnail-imange"
-                                    name="thumbnail">
-                                <p class="text-primary text-xs mt-2">Thumbnail must be 403 x 518 Dimension</p>
-                                @error('thumbnail')
                                 <p class="text-danger text-xs mt-2">{{ $message }}</p>
                                 @enderror
                             </div>
@@ -121,12 +109,18 @@
     </div>
 </div>
 
+<x-forms.cropper-form />
+
+
 @endsection
 
 @section('footer-imports')
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"
     integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
 <script src="{{ asset('assets/tagsinput/src/bootstrap-tagsinput.js') }}" referrerpolicy="origin"></script>
+
+<x-head.cropper-config ratio="{{ (922 / 518) }}" thumbnail-ratio="{{ (403 / 518) }}" input=".main-image" selector="#cropped-main-image" thumbnail-selector="#cropped-thumb-image"/>
+
 <script>
     $(".input-tag").tagsinput('items')
 </script>

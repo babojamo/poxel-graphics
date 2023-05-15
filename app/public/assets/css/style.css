@@ -47,7 +47,7 @@
 	--body-text-color: #C9C9C9;
 	--heading-text-color: #fff;
 	--paragraph-text-color: #C9C9C9;
-	--nft-gradient-color: linear-gradient(79deg, rgb(237, 122, 69) 0%, rgba(224,57,253,1) 100%);
+    --nft-gradient-color: linear-gradient(79deg, rgb(237, 122, 69) 0%, rgba(224,57,253,1) 100%);
 	--gradient-btn-hover: linear-gradient(90deg, rgba(224,57,253,1) 0%, rgba(99,69,237,1) 100%);
 	--facebook: #3b5998;
 	--twitter: #00acee;
