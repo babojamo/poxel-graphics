@@ -9,6 +9,7 @@
 
     <style>
         body {
+            overflow: hidden;
             margin: 0 !important;
             background: var(--header-background-color) !important;
         }

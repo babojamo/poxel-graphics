@@ -1,5 +1,6 @@
 @extends('admin.layouts.user_type.auth')
 @section('header-imports')
+<link rel="stylesheet" href="{{ asset('js/cropperjs/cropper.min.css') }}">
 <x-head.tinymce-config selector="content"/>
 @endsection
 
@@ -74,8 +75,10 @@
                         <div class="form-group">
                             <label for="feature-image" class="form-control-label">Feature Image</label>
                             <div class="@error('main_image')border border-danger rounded-3 @enderror">
-                                <input class="form-control" type="file" placeholder="Image" id="feature-image"
-                                    name="main_image">
+                                <input class="form-control main-image" type="file" placeholder="Image" id="feature-image" />
+                                    <input id="cropped-main-image" type="hidden" name="main_image"/>
+
+
                                 <p class="text-warning text-xs mt-2">Choose an file if you want to replace the featured
                                     image</p>
 
@@ -162,6 +165,7 @@
         </div>
     </div>
 </div>
+<x-forms.cropper-form />
 
 @endsection
 @section('footer-imports')
@@ -169,6 +173,9 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"
     integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery-sortablejs@latest/jquery-sortable.js"></script>
+
+<x-head.cropper-config input=".main-image" selector="#cropped-main-image" ratio="{{ (1626/1781) }}"/>
+
 <script>
     var updateImages = function () {
         const images = [];
