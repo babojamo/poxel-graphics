@@ -100,7 +100,7 @@ class GetQuotationController extends Controller
             'fabric' => 'required_if:service,sublimation',
             'collar_type' => 'required_if:service,sublimation',
             'sticker_type' => 'required_if:service,others',
-            'reference' => 'file|nullable',
+            'reference' => 'file|nullable|max:10000',
             'deadline' => 'nullable',
             'remarks' => 'nullable',
         ]);

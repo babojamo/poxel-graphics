@@ -64,6 +64,10 @@
         quickbars_selection_toolbar: 'bold italic | quicklink h2 h3 blockquote quickimage quicktable',
         toolbar_mode: 'sliding',
         contextmenu: 'link image table',
+        image_dimensions: false,
+        image_class_list: [
+            {title: 'Responsive', value: 'img-responsive'}
+        ],
         images_upload_handler: image_upload_handler_func
     });
 </script>

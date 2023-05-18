@@ -234,7 +234,8 @@
                 </div>
                 <div class="form-grp">
                     <label for="references">Reference Design</label>
-                    <input id="references" name="references[]" type="file" accept="image/png, image/gif, image/jpeg, zip, application/octet-stream, application/zip, application/x-zip, application/x-zip-compressed" multiple>
+                    <input id="references"  name="references[]" type="file" multiple>
+                    <p class="text">Maximum upload file size is 10MB and please attach only images or zip files.</p>
                     @error('references')
                     <p class="invalid-feedback">{{ $message }}</p>
                     @enderror
@@ -248,12 +249,32 @@
                 </div>
                 <p>Note: Please fill out completely the form especially your contact information so we can directly send
                     you the quotation</p>
-                <button type="submit" class="btn">Send Request</button>
+                <button type="submit" id="submit" class="btn">Send Request</button>
             </form>
         </div>
     </div>
 </section>
 
+@endsection
 
+@section('footer-imports')
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"
+    integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
 
+<script>
+    const references = $('#references');
+    //binds to onchange event of your input field
+    references.bind('change', function () {
+        let size = 0; // MB
+        const maxSize = 1000000 * 10; // MB
+        for (let index = 0; index < this.files.length; index++) {
+            size += this.files[index].size;
+        }
+        console.log(size);
+        if (size > maxSize) {
+            alert("Maximum upload file size is only 10MB please select another file.");
+            references.val('');
+        }
+    });
+</script>
 @endsection
