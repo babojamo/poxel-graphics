@@ -1,0 +1,19 @@
+.product-gallery {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-height: 25rem;
+    overflow: hidden;
+}
+
+.product-gallery:hover {
+    overflow: scroll;
+    transition: all 1s ease-in;
+    transition: 1s;
+}
+
+.product-gallery .product-preview img {
+    max-width: 5rem;
+    width: 5rem;
+}

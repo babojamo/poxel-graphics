@@ -1,0 +1,29 @@
+.product-listing {
+
+}
+
+.product-listing .main-image {
+
+
+}
+.product-listing .main-image .category {
+position: absolute;
+    padding: 10px; 
+    background: rgba(238, 201, 226, 0.67);
+    border-bottom-right-radius: 5px;
+    font-size: 1rem;
+}
+
+.product-listing .product-footer {
+  display: flex;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+.product-listing .product-footer .btn-outline {
+  margin-left: auto;
+}
+.product-listing .product-footer .product-name h2 {
+  font-size: 1rem;
+  font-weight: 500;
+}
