@@ -48,8 +48,7 @@
                                 class="flaticon-timer"></i> Others</a></li>
                 </ul>
             </div>
-            <form action="{{ route('quotation.send') }}" class="create-item-form" method="POST" role="form text-left"
-                enctype="multipart/form-data">
+            <form action="{{ route('quotation.send') }}" class="create-item-form" method="POST" role="form text-left">
                 <input value="{{ $others ? 'others' : 'sublimation' }}" name="service" type="hidden">
                 @csrf
                 <div class="row">
@@ -234,8 +233,18 @@
                 </div>
                 <div class="form-grp">
                     <label for="references">Reference Design</label>
-                    <input id="references"  name="references[]" type="file" multiple>
+                    <div id="upload-loading" class="spinner-border text-info mx-2" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+
+                    <input id="references-upload" type="file" multiple="multiple"/>
                     <p class="text">Maximum upload file size is 10MB and please attach only images or zip files.</p>
+                    <input type="hidden" value="{{ old('references') }}" id="references" name="references">
+                    <div id="reference-list-wrapper" class="mt-2">
+                        <label for="references">Reference Files</label>
+                        <ul id="reference-list" class="list-group">
+                        </ul>
+                    </div>
                     @error('references')
                     <p class="invalid-feedback">{{ $message }}</p>
                     @enderror
@@ -256,25 +265,107 @@
 </section>
 
 @endsection
-
 @section('footer-imports')
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"
     integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
 
 <script>
-    const references = $('#references');
-    //binds to onchange event of your input field
-    references.bind('change', function () {
-        let size = 0; // MB
-        const maxSize = 1000000 * 10; // MB
-        for (let index = 0; index < this.files.length; index++) {
-            size += this.files[index].size;
+    try {
+        let toUploadFiles = [];
+
+        const upload = $('#references-upload');
+        const referenceWrapper = $('#reference-list-wrapper');
+        const referenceList = $('#reference-list');
+        const loading = $('#upload-loading');
+        const submit = $('#submit');
+        const referenceInput = $('#references');
+
+        // Hide wrapper
+        referenceWrapper.hide();
+        loading.hide();
+
+
+
+        function appendUploadFiles() {
+            referenceList.empty();
+            for (let index = 0; index < toUploadFiles.length; index++) {
+                const element = toUploadFiles[index];
+                referenceList.append(
+                    `<li id="reference-file-${index}" class="list-group-item d-flex align-items-center">${element.file_name}<button type="button" data-id="${index}" class="btn ms-3 reference-button">Remove</button></li>`
+                    );
+            }
+
+            if (toUploadFiles.length <= 0)
+                referenceWrapper.hide();
+            else
+                referenceWrapper.show();
+
+            referenceInput.val(JSON.stringify(toUploadFiles));
         }
-        console.log(size);
-        if (size > maxSize) {
-            alert("Maximum upload file size is only 10MB please select another file.");
-            references.val('');
+
+        function removeFile(index) {
+            toUploadFiles.splice(index, 1);
+            appendUploadFiles();
         }
-    });
+
+        $(document).ready(function () {
+            if (!(!referenceInput.val())) {
+                toUploadFiles = JSON.parse(referenceInput.val());
+                appendUploadFiles();
+            }
+        });
+
+        referenceWrapper.on('click', '.reference-button', function () {
+            removeFile($(this).data('id'));
+        });
+
+
+        //binds to onchange event of your input field
+        upload.bind('change', function () {
+            var fd = new FormData();
+            let size = 0; // MB
+            const maxSize = 1000000 * 10; // MB
+
+            for (let index = 0; index < this.files.length; index++) {
+                fd.append('images[]', this.files[index]);
+                size += this.files[index].size;
+            }
+
+            if (size > maxSize) {
+                alert("Maximum upload file size is only 10MB please select another file.");
+                upload.val('');
+            } else {
+                loading.show();
+                upload.attr('disabled', true);
+                submit.attr('disabled', true);
+
+                $.ajax({
+                    url: '{{ route('quotation.upload') }}',
+                    type: 'post',
+                    data: fd,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        toUploadFiles = [
+                            ...toUploadFiles,
+                            ...response,
+                        ];
+                        upload.val('');
+                        appendUploadFiles();
+
+                        loading.hide();
+                        upload.attr('disabled', false);
+                        submit.attr('disabled', false);
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert("Status: " + textStatus);
+                        alert("Error: " + errorThrown);
+                    }
+                });
+            }
+        });
+    } catch (error) {
+        alert(JSON.stringify(error));
+    }
 </script>
 @endsection

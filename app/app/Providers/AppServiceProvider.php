@@ -2,11 +2,13 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\View;
 use App\Models\Service;
+use Illuminate\Routing\UrlGenerator;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\ServiceProvider;
 use Validator;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -25,8 +27,13 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(UrlGenerator $url)
     {
+        // For ngrok testing
+        if(config('app.env') === 'local') {
+            $url->forceScheme('https');
+        }
+
         $services = [];
         
         if(Schema::hasTable('services'))
