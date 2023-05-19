@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\GetQuotation;
+use Illuminate\Support\Facades\Storage;
 
 class GetQuotationController extends Controller
 {
@@ -100,7 +101,7 @@ class GetQuotationController extends Controller
             'fabric' => 'required_if:service,sublimation',
             'collar_type' => 'required_if:service,sublimation',
             'sticker_type' => 'required_if:service,others',
-            'reference' => 'file|nullable|max:10000',
+            'references' => 'nullable',
             'deadline' => 'nullable',
             'remarks' => 'nullable',
         ]);
@@ -108,5 +109,27 @@ class GetQuotationController extends Controller
         Mail::to(config('app.poxel.quotation_receiver'))->send(new GetQuotation($request));
  
         return redirect()->back()->with('success', 'Thank you for your message! We appreciate your interest in our services and we are glad to hear that we will be able to provide you with a quotation soon.');
+    }
+
+    public function uploadAttachments(Request $request)
+    {
+        $attributes = request()->validate([
+            'images' => ['required'],
+        ]);
+
+  
+        $images = [];
+
+        foreach ($request->images as $image) {
+            $images[] = [
+                'file_name' => $image->getClientOriginalName(),
+                'mime' => $image->getMimeType(),
+                'path' => $image->store(
+                    "attachments", 'public'
+                )
+            ];
+        }
+
+        return response()->json($images);
     }
 }

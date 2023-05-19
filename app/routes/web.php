@@ -49,6 +49,7 @@ Route::prefix('news')->name('news')->group(function(){
 Route::prefix('quotation')->name('quotation')->group(function() {
     Route::get('/', [GetQuotationController::class,'index']);
     Route::post('/', [GetQuotationController::class,'send'])->name('.send');
+    Route::post('/upload', [GetQuotationController::class,'uploadAttachments'])->name('.upload');
 });
 
 Route::name('about')->group(function() {

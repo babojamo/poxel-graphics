@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Storage;
 
 class GetQuotation extends Mailable
 {
@@ -30,18 +31,28 @@ class GetQuotation extends Mailable
      */
     public function build()
     {
-        $references = $this->request->references;
+        try {
+            $references = $this->request->references;
 
-        if(!empty($references)) {
-            foreach ($references as $reference) {
-                $filename = $reference->getClientOriginalName();
-                $this->attachData($reference->get(), "$filename", [
-                    'mime' => $reference->getMimeType(),
-                ]);
+            if(!empty($references)) {
+                $references = json_decode($references);
+    
+                foreach ($references as $reference) {
+    
+                    $filename = $reference->file_name;
+                    $mime = $reference->mime;
+                    $file = Storage::disk('public')->get($reference->path);
+    
+                    $this->attachData($file, "$filename", [
+                        'mime' => $mime,
+                    ]);
+                }
             }
+    
+            return $this->from('no-reply@poxelgraphics.ph', config('app.name'))
+                ->markdown('emails.get-quotation');
+        } catch (\Throwable $th) {
+            throw $th;
         }
-
-        return $this->from('no-reply@poxelgraphics.ph', config('app.name'))
-            ->markdown('emails.get-quotation');
     }
 }
