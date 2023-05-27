@@ -11,6 +11,12 @@ class HomeController extends Controller
 {
     public function index() {
 
+        $banners = [];
+
+        for ($i=1; $i <= 16 ; $i++) { 
+            $banners[] = asset("assets/img/home/banner_{$i}.png");
+        }
+       
         $services = Service::orderBy('id')->get();
         $featured_service_products = ServiceProduct::where('featured', true)
             ->orderBy('service_id')
@@ -22,6 +28,7 @@ class HomeController extends Controller
             'services' => $services,
             'featured_service_products' => $featured_service_products,
             'posts' => $posts,
+            'banners' => $banners,
         ]);
     }
 }

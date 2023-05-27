@@ -22,25 +22,16 @@
                 <div class="col-lg-6 col-md-12">
                     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
-                            <div class="carousel-item active" data-bs-interval="10000">
-                                <img class="d-block w-100" src="assets/img/banner/banner_1.png" alt="First slide">
-                            </div>
-                            <div class="carousel-item" data-bs-interval="10000">
-                                <img class="d-block w-100" src="assets/img/banner/banner_2.png" alt="Second slide">
-                            </div>
-                            <div class="carousel-item" data-bs-interval="10000">
-                                <img class="d-block w-100" src="assets/img/banner/banner_3.png" alt="Third slide">
-                            </div>
-                            <div class="carousel-item" data-bs-interval="10000">
-                                <img class="d-block w-100" src="assets/img/banner/banner_4.png" alt="Third slide">
-                            </div>
+                            @foreach($banners as $index => $banner)
+                                <div class="carousel-item {{ $index === 0 ? 'active' : '' }}" data-bs-interval="10000">
+                                    <img class="d-block w-100" src="{{ $banner }}" alt="First slide">
+                                </div>
+                            @endforeach
                         </div>
                         <ol class="carousel-indicators">
-                            <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active">
-                            </li>
-                            <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
-                            <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
-                            <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3"></li>
+                            @foreach($banners as $index => $banner)
+                                <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ $index }}" class="{{ $index === 0 ? 'active' : '' }}"></li>
+                            @endforeach
                         </ol>
                     </div>
 
