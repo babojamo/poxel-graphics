@@ -12,6 +12,14 @@
         width: unset !important;
         flex: unset !important;
     }
+    
+    @media only screen and (max-width:576px) {
+        .attachment-name {
+            width: 100px;
+            text-overflow: ellipsis;
+            overflow-wrap: break-word;
+        }
+    }
 </style>
 @endsection
 
@@ -291,7 +299,10 @@
             for (let index = 0; index < toUploadFiles.length; index++) {
                 const element = toUploadFiles[index];
                 referenceList.append(
-                    `<li id="reference-file-${index}" class="list-group-item d-flex align-items-center">${element.file_name}<button type="button" data-id="${index}" class="btn ms-3 reference-button">Remove</button></li>`
+                    `<li id="reference-file-${index}" class="list-group-item d-flex align-items-center">
+                    <span class="attachment-name">${element.file_name}</span>
+                    <button type="button" data-id="${index}" class="btn ms-auto reference-button">Remove</button>
+                    </li>`
                     );
             }
 
