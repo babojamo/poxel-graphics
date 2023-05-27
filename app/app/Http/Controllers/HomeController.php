@@ -13,7 +13,7 @@ class HomeController extends Controller
 
         $banners = [];
 
-        for ($i=1; $i <= 16 ; $i++) { 
+        for ($i=1; $i <= 17 ; $i++) { 
             $banners[] = asset("assets/img/home/banner_{$i}.png");
         }
        
