@@ -15,7 +15,9 @@
                     <div class="banner-content">
                         <h2 style="display: flex; align-items: center; margin-bottom: 2rem;">Poxel</h2>
                         <h2 class="title poxel-title">Graphics and apparels printing services</h2>
-                        <p>Offers quality and affordable Digital Printing, Dye Sublimation and Outdoor Signage.</p>
+                        <p class="m-0 mb-3">Transforming your ideas into reality. Only the best quality, from pixel to textile.</p>
+                        <p class="m-0 mb-3">Poxel Apparel offers a variety of products and services to cater to all of your needs.</p>
+                        <p class="m-0 mb-3">A quality yet affordable products and services, such as custom apparel, sublimation printing, signage, tarpaulin, and stickers. With top quality printing machines, providing vibrant color output to our products.</p>
                         <a href="{{ route('products') }}" class="banner-btn">Products & Services <i class="fi-sr-arrow-right"></i></a>
                     </div>
                 </div>
